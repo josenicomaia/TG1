@@ -61,26 +61,11 @@ unset (
           <!--<input type="text" class="form-control form-control-sm" name="estagio" placeholder="Estágio da Proposta">-->
           <select nome="rattipo" class="form-control" name="rattipo">
             <option> Selecione... </option>
-            <option value="1"<?php
-            if ($consulta['rattipo'] == 1) {
-              echo 'selected';
-            }
-            ?> >1-Contratual</option>
-
-            <option value="2"<?php
-            if ($consulta['rattipo'] == 2) {
-              echo 'selected';
-            }
-            ?> >2-Adicional</option>
-
-            <option value="3"<?php
-            if ($consulta['rattipo'] == 3) {
-              echo 'selected';
-            }
-            ?> >3-Garantia</option>
+            <option value="1">1-Contratual</option>
+            <option value="2">2-Adicional</option>
+            <option value="3">3-Garantia</option>
           </select>
         </div>
-
 
         <div class="form-group col-md-3">
           <label for="datainicial">Data Inicial</label>

@@ -54,13 +54,13 @@
       <form class="form-inline my-2 my-lg-0">
         <font color="#FFFFFF">
           <?php
-          session_start();
+          @session_start();
           include_once("security.php");
           $ESPACO="&nbsp";
           echo ("Bem-Vindo: " .$_SESSION['NomeUsuario'] .$ESPACO .$ESPACO);
 
           if(($_SESSION['id_acesso'] == 2) || ($_SESSION['id_acesso'] == 4)){
-            header ("Location: login.php");
+            header("Location: login.php");
           }
           ?>
         </font>

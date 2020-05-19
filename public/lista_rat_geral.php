@@ -5,16 +5,13 @@ include_once("security.php");
 include ("defaulttech.php");
 //include ("erros.php");
 
-
-
-
 $datacriacao = $_POST['datacriacao'];
 $datacriacaofinal = $_POST['datacriacaofinal'];
 
-$ratcodotrs = empty($_POST['ratcodotrs'])?$_SESSION['ratcodotrs']:$_POST['ratcodotrs'];
+$ratcodotrs = $_POST['ratcodotrs'] ?? $_SESSION['ratcodotrs'] ?? '';
 $_SESSION['ratcodotrs'] = $ratcodotrs;
 
-$ratnumero = empty($_POST['ratnumero'])?$_SESSION['ratnumero']:$_POST['ratnumero'];
+$ratnumero = $_POST['ratnumero'] ?? $_SESSION['ratnumero'];
 $_SESSION['ratnumero'] = $ratnumero;
 
 $rattipo = empty($_POST['rattipo'])?$_SESSION['rattipo']:$_POST['rattipo'];
@@ -32,52 +29,36 @@ $_SESSION['RazaoSocial'] = $RazaoSocial;
 // INICIO MARCOS
 
 $numparam = 0;
-
+$sqlwhere = "";
 
 if ($RazaoSocial != "") {
-  if ( $numparam == 0) {
-    $sqlwhere = $sqlwhere."RazaoSocial LIKE '%$RazaoSocial%'";
     $numparam++;
-  }
-  else
     $sqlwhere = $sqlwhere." and RazaoSocial LIKE '%$RazaoSocial%'";
 }
 
 
 if ($ratnumero != "") {
- if ($numparam == 0) {
-  $sqlwhere = $sqlwhere."ratnumero = '$ratnumero'";
-  $numparam++;  
-}
-else
+  $numparam++;
   $sqlwhere = $sqlwhere." and ratnumero = '$ratnumero'";
 }
 
 
 if ($rattipo != "Selecione...") {
-  if ($numparam == 0) {
-    $sqlwhere = $sqlwhere."rattipo = '$rattipo'";
     $numparam++;
-  }
-  else
     $sqlwhere = $sqlwhere." and rattipo = '$rattipo'";
 }
 
 
 if ($datacriacao != "" &&  $datacriacaofinal != "") {
-  if ($numparam == 0) {
-    $sqlwhere = $sqlwhere."date(`ratdata`) between date('$datacriacao') and date('$datacriacaofinal')";
     $numparam++;
-  }
-  else
     $sqlwhere = $sqlwhere." and date(`ratdata`) between date('$datacriacao') and date('$datacriacaofinal')";
 }
 
-
-$resultado = $mysqli->query("SELECT * FROM contratos
+$sqlString = "SELECT * FROM contratos
   INNER JOIN clientes ON clientes.uid_cliente = contratos.cliente_uid
-  INNER JOIN rat ON rat.ratcodotrs = contratos.codotrs where $sqlwhere and contratos.tiposervicocontrato = 1 ORDER BY ratdata");
+  INNER JOIN rat ON rat.ratcodotrs = contratos.codotrs where 1 = 1 $sqlwhere and contratos.tiposervicocontrato = 1 ORDER BY ratdata";
 
+$resultado = $mysqli->query($sqlString);
 
 $linhas = mysqli_num_rows($resultado);
 
@@ -165,17 +146,16 @@ if (($ratcodotrs == "") && ($ratnumero == "") && ($rattipo == "Selecione...")) {
         </thead>
         <tbody>
           <?php 
-
                 // Função SOMAR
 
-          function SomaHoras ($horaA, $horaB) {
-            $horaAe=explode(":",$horaA);
-            $horaBe=explode(":",$horaB);
+          function SomaHoras($horaA, $horaB) {
+            $horaAe = explode(":", $horaA);
+            $horaBe = explode(":", $horaB);
 
-            $hours=$horaAe[0]+$horaBe[0];
-            $minutes=$horaAe[1]+$horaBe[1];
+            $hours = intval($horaAe[0]) + intval($horaBe[0]);
+            $minutes = intval($horaAe[1]) + intval($horaBe[1]);
 
-            if($hours < 10){
+            if ($hours < 10) {
               $hours = "0".$hours;
             }
 
@@ -201,14 +181,10 @@ if (($ratcodotrs == "") && ($ratnumero == "") && ($rattipo == "Selecione...")) {
             return $sum;
           }
 
-
-
                 // FIM FUNCAO
+          $consumototal = "00:00";
 
-
-
-          while($linhas = mysqli_fetch_assoc($resultado)){
-
+          while($linhas = mysqli_fetch_assoc($resultado)) {
             echo "<tr>";
             echo "<td>".$linhas['ratnumero']."</td>";
             echo "<td>".$linhas['ratdata']."</td>";
@@ -218,16 +194,10 @@ if (($ratcodotrs == "") && ($ratnumero == "") && ($rattipo == "Selecione...")) {
             echo "<td>".$linhas['ratcodotrs']."</td>";
             echo "<td>".$linhas['RazaoSocial']."</td>";
             echo "<td>".$duracao= gmdate('H:i', strtotime( $linhas['ratfim']) - strtotime( $linhas['ratinicio']))."</td>";
-
-
             echo "</tr>";
-            
 
-            $consumototal = SomaHoras ($duracao, $consumototal);
+            $consumototal = SomaHoras($duracao, $consumototal);
             $totalcontrato = $linhas['totalhoras'];
-
-            
-
           }
 
           

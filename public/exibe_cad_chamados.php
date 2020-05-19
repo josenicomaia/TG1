@@ -1,46 +1,15 @@
 <?php
-session_start();
+    session_start();
     $mysqli = include ("conecta.php");
     include_once("security.php");
     include ("defaulttech.php");
 
-    $ajan = $_POST['ajan'];
-    $fjan = $_POST['fjan'];
-    $afev = $_POST['afev'];
-    $ffev = $_POST['ffev'];
-    $amar = $_POST['amar'];
-    $fmar = $_POST['fmar'];
-    $aabr = $_POST['aabr'];
-    $fabr = $_POST['fabr'];
-    $amai = $_POST['amai'];
-    $fmai = $_POST['fmai'];
-    $ajun = $_POST['ajun'];
-    $fjun = $_POST['fjun'];
-    $ajul = $_POST['ajul'];
-    $fjul = $_POST['fjul'];
-    $aago = $_POST['aago'];
-    $fago = $_POST['fago'];
-    $aset = $_POST['aset'];
-    $fset = $_POST['fset'];
-    $aout = $_POST['aout'];
-    $fout = $_POST['fout'];
-    $anov = $_POST['anov'];
-    $fnov = $_POST['fnov'];
-    $adez = $_POST['adez'];
-    $fdez = $_POST['fdez'];
-    $fdez = $_POST['fdez'];
     $ano = $_POST['ano'];
     $_SESSION['ano'] = $ano;
 
-    
-    
     $sql = $mysqli->query("SELECT * FROM chamadospormes WHERE ano='$ano'");
     $consulta = mysqli_fetch_assoc($sql);
-
-
-    
 ?>
-
 <!doctype html>
 <html lang="pt-br">
     <head>

@@ -1,10 +1,9 @@
 <?php
-session_start();
+    session_start();
 
-include_once("security.php");
-include ("defaulttech.php");
+    include_once("security.php");
+    include ("defaulttech.php");
 ?>
-
 <!doctype html>
 <html lang="pt-br">
 <head>
@@ -13,11 +12,8 @@ include ("defaulttech.php");
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <!-- Se essa página possuir um CSS PADRÃO DIFERENTE INCLUIR ABAIXO  -->
   <link href="css/starter-template.css" rel="stylesheet">
-
-
 </head>
 <body>
-
  <main role="main" class="container">
   <div class="starter-template"><h3>Cadastro de Chamados </h3></div>
   <form class="form-signin" method="POST" action="exibe_cad_chamados.php">

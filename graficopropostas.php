@@ -1,6 +1,6 @@
 <?php
 session_start();
-    include_once("conecta.php");
+    $mysqli = include_once("conecta.php");
     include_once("security.php");
     include ("defaultcom.php");
 
@@ -11,16 +11,16 @@ session_start();
 
 
 
-    $sqlaberto=mysql_query("SELECT propostas.*, clientes.RazaoSocial FROM propostas INNER JOIN clientes ON propostas.cliente_uid = clientes.uid_cliente where propostas.estagio <=  3 and date(`datacriacao`) between date('$datacriacao') and date('$datacriacaofinal')");
-    $totalaberto=mysql_num_rows($sqlaberto);
+    $sqlaberto = $mysqli->query("SELECT propostas.*, clientes.RazaoSocial FROM propostas INNER JOIN clientes ON propostas.cliente_uid = clientes.uid_cliente where propostas.estagio <=  3 and date(`datacriacao`) between date('$datacriacao') and date('$datacriacaofinal')");
+    $totalaberto = mysqli_num_rows($sqlaberto);
 
 
-  $sqlfechada=mysql_query("SELECT propostas.*, clientes.RazaoSocial FROM propostas INNER JOIN clientes ON propostas.cliente_uid = clientes.uid_cliente where propostas.estagio =  4 and date(`datacriacao`) between date('$datacriacao') and date('$datacriacaofinal')");
-    $totalfechado=mysql_num_rows($sqlfechada);
+    $sqlfechada = $mysqli->query("SELECT propostas.*, clientes.RazaoSocial FROM propostas INNER JOIN clientes ON propostas.cliente_uid = clientes.uid_cliente where propostas.estagio =  4 and date(`datacriacao`) between date('$datacriacao') and date('$datacriacaofinal')");
+    $totalfechado = mysqli_num_rows($sqlfechada);
 
 
-    $sqlperdida=mysql_query("SELECT propostas.*, clientes.RazaoSocial FROM propostas INNER JOIN clientes ON propostas.cliente_uid = clientes.uid_cliente where propostas.estagio >  4 and date(`datacriacao`) between date('$datacriacao') and date('$datacriacaofinal')");
-    $totalperdida=mysql_num_rows($sqlperdida);
+    $sqlperdida = $mysqli->query("SELECT propostas.*, clientes.RazaoSocial FROM propostas INNER JOIN clientes ON propostas.cliente_uid = clientes.uid_cliente where propostas.estagio >  4 and date(`datacriacao`) between date('$datacriacao') and date('$datacriacaofinal')");
+    $totalperdida = mysqli_num_rows($sqlperdida);
 
     $totalgeral= $totalaberto + $totalperdida + $totalfechado;
 

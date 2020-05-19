@@ -1,12 +1,12 @@
 <?php
 session_start();
-include_once("conecta.php");
+$mysqli = include_once("conecta.php");
 include_once("security.php");
 include ("defaultcom.php");
 
 
-$resultado=mysql_query("SELECT * FROM clientes WHERE Ativo ='Sim' ORDER BY RazaoSocial");
-$linhas=mysql_num_rows($resultado);
+$resultado = $mysqli->query("SELECT * FROM clientes WHERE Ativo ='Sim' ORDER BY RazaoSocial");
+$linhas = mysqli_num_rows($resultado);
 
 ?>
 
@@ -47,7 +47,7 @@ $linhas=mysql_num_rows($resultado);
         </thead>
         <tbody>
           <?php 
-          while($linhas = mysql_fetch_array($resultado)){
+          while($linhas = mysqli_fetch_array($resultado)){
 
         
           echo "<tr>";

@@ -1,6 +1,6 @@
 <?php
 session_start();
-    include_once("conecta.php");
+    $mysqli = include_once("conecta.php");
     include_once("security.php");
     include ("defaultadmin.php");
     $nome = $_POST['nome'];
@@ -35,9 +35,9 @@ session_start();
     // Gerar Md5 da Senha antes de gravar no banco
     $senha = md5($senha);
     
-    $sql = mysql_query("INSERT INTO usuarios (nome, senha, username, id_acesso, email, criacao) VALUES ('$nome', '$senha', '$username', '$id_acesso', '$email', NOW())");
+    $sql = $mysqli->query("INSERT INTO usuarios (nome, senha, username, id_acesso, email, criacao) VALUES ('$nome', '$senha', '$username', '$id_acesso', '$email', NOW())");
 
-    if (mysql_affected_rows() !=0) {
+    if (mysqli_affected_rows($mysqli) !=0) {
 
 ?>
                   <div class="alert alert-success" role="alert"> Usuário Cadastrado com Sucesso </div> 

@@ -1,6 +1,6 @@
 <?php
 session_start();
-    include_once("conecta.php");
+    $mysqli = include_once("conecta.php");
     include_once("security.php");
     include ("defaulttech.php");
     $ajan = $_POST['ajan'];
@@ -32,8 +32,8 @@ session_start();
 
 
     
-    $sql = mysql_query("SELECT * FROM chamadospormes WHERE ano = '$ano' ");
-    $consulta = mysql_fetch_assoc($sql);  
+    $sql = $mysqli->query("SELECT * FROM chamadospormes WHERE ano = '$ano' ");
+    $consulta = mysqli_fetch_assoc($sql);
 
   ?>
 

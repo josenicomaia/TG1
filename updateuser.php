@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include_once("conecta.php");
+    $mysqli = include_once("conecta.php");
     include_once("security.php");
     include ("defaultadmin.php");
     $nome = $_POST['nome'];
@@ -25,9 +25,9 @@
     // Gerar Md5 da Senha antes de gravar no banco
     $senha = md5($senha);
     
-    $sql = mysql_query("UPDATE usuarios SET nome='$nome', senha='$senha', username='$username', id_acesso='$id_acesso', email='$email', modificacao=NOW() WHERE email = '$email' ");
+    $sql = $mysqli->query("UPDATE usuarios SET nome='$nome', senha='$senha', username='$username', id_acesso='$id_acesso', email='$email', modificacao=NOW() WHERE email = '$email' ");
 
-    if (mysql_affected_rows() !=0) {
+    if (mysqli_affected_rows($mysqli) !=0) {
 
 ?>
                   <div class="alert alert-success" role="alert"> Usuário Editado com Sucesso </div> 

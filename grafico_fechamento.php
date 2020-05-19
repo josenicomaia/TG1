@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once("conecta.php");
+$mysqli = include_once("conecta.php");
 include_once("security.php");
 include ("defaulttech.php");
 
@@ -13,8 +13,8 @@ $_SESSION['fechaano'] = $fechaano;
 
 
 
-$sql = mysql_query("SELECT * FROM fechamento WHERE fechaano = '$fechaano' and fechames = '$fechames' ");
-$consulta = mysql_fetch_assoc($sql);  
+$sql = $mysqli->query("SELECT * FROM fechamento WHERE fechaano = '$fechaano' and fechames = '$fechames' ");
+$consulta = mysqli_fetch_assoc($sql);
 
 ?>
 

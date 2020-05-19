@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once("conecta.php");
+$mysqli = include_once("conecta.php");
 include_once("security.php");
 include ("defaultusers.php");
 
@@ -9,34 +9,34 @@ include ("defaultusers.php");
 
 
    
-$resultado1=mysql_query("SELECT contratos.*, clientes.RazaoSocial FROM contratos INNER JOIN clientes ON contratos.cliente_uid = clientes.uid_cliente WHERE status=1 and tiposervicocontrato=1 ORDER BY RazaoSocial");
-$linhas1=mysql_num_rows($resultado1);
+$resultado1 = $mysqli->query("SELECT contratos.*, clientes.RazaoSocial FROM contratos INNER JOIN clientes ON contratos.cliente_uid = clientes.uid_cliente WHERE status=1 and tiposervicocontrato=1 ORDER BY RazaoSocial");
+$linhas1 = mysqli_num_rows($resultado1);
 
-while($linhas1 = mysql_fetch_array($resultado1)){
+while($linhas1 = mysqli_fetch_array($resultado1)){
   $valortotal1 = (($valortotal1) + ($linhas1['valoratual']));
 }
 
  
-$resultado2=mysql_query("SELECT contratos.*, clientes.RazaoSocial FROM contratos INNER JOIN clientes ON contratos.cliente_uid = clientes.uid_cliente WHERE status=1 and tiposervicocontrato=2 ORDER BY RazaoSocial");
-$linhas2=mysql_num_rows($resultado2);
+$resultado2 = $mysqli->query("SELECT contratos.*, clientes.RazaoSocial FROM contratos INNER JOIN clientes ON contratos.cliente_uid = clientes.uid_cliente WHERE status=1 and tiposervicocontrato=2 ORDER BY RazaoSocial");
+$linhas2 = mysqli_num_rows($resultado2);
 
-while($linhas2 = mysql_fetch_array($resultado2)){
+while($linhas2 = mysqli_fetch_array($resultado2)){
   $valortotal2 = (($valortotal2) + ($linhas2['valoratual']));
 }
 
  
-$resultado3=mysql_query("SELECT contratos.*, clientes.RazaoSocial FROM contratos INNER JOIN clientes ON contratos.cliente_uid = clientes.uid_cliente WHERE status=1 and tiposervicocontrato=3 ORDER BY RazaoSocial");
-$linhas3=mysql_num_rows($resultado3);
+$resultado3 = $mysqli->query("SELECT contratos.*, clientes.RazaoSocial FROM contratos INNER JOIN clientes ON contratos.cliente_uid = clientes.uid_cliente WHERE status=1 and tiposervicocontrato=3 ORDER BY RazaoSocial");
+$linhas3 = mysqli_num_rows($resultado3);
 
-while($linhas3 = mysql_fetch_array($resultado3)){
+while($linhas3 = mysqli_fetch_array($resultado3)){
   $valortotal3 = (($valortotal3) + ($linhas3['valoratual']));
 }
 
  
-$resultado4=mysql_query("SELECT contratos.*, clientes.RazaoSocial FROM contratos INNER JOIN clientes ON contratos.cliente_uid = clientes.uid_cliente WHERE status=1 and tiposervicocontrato=4 ORDER BY RazaoSocial");
-$linhas4=mysql_num_rows($resultado4);
+$resultado4 = $mysqli->query("SELECT contratos.*, clientes.RazaoSocial FROM contratos INNER JOIN clientes ON contratos.cliente_uid = clientes.uid_cliente WHERE status=1 and tiposervicocontrato=4 ORDER BY RazaoSocial");
+$linhas4 = mysqli_num_rows($resultado4);
 
-while($linhas4 = mysql_fetch_array($resultado4)){
+while($linhas4 = mysqli_fetch_array($resultado4)){
   $valortotal4 = (($valortotal4) + ($linhas4['valoratual']));
 }
 

@@ -1,3 +1,6 @@
+<?php
+    @session_start();
+?>
 <!doctype html>
 <html lang="pt-br">
 <head>
@@ -59,7 +62,6 @@
       <form class="form-inline my-2 my-lg-0">
         <font color="#FFFFFF">
           <?php
-          session_start();
           include_once("security.php");
           $ESPACO="&nbsp";
           echo ("Bem-Vindo: " .$_SESSION['NomeUsuario'] .$ESPACO .$ESPACO);

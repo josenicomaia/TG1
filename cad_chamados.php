@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once("conecta.php");
+$mysqli = include_once("conecta.php");
 include_once("security.php");
 $ajan = $_POST['ajan'];
 $fjan = $_POST['fjan'];
@@ -126,8 +126,8 @@ $_SESSION['ano'] = $ano;
         
 
         
-        $sql = mysql_query("SELECT * FROM chamadospormes WHERE ano='$ano' LIMIT 1");
-        $consulta = mysql_fetch_assoc($sql);
+        $sql = $mysqli->query("SELECT * FROM chamadospormes WHERE ano='$ano' LIMIT 1");
+        $consulta = mysqli_fetch_assoc($sql);
 
         ?>
 

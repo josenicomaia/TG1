@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include_once("conecta.php");
+    $mysqli = include_once("conecta.php");
     include_once("security.php");
     include ("defaulttech.php");
     $ratnumero = $_SESSION['ratnumero'];
@@ -15,11 +15,11 @@
     <body>
 <?php
     
-   $sql=mysql_query("DELETE FROM rat WHERE ratnumero = '$ratnumero' "); 
-   $exclui = mysql_fetch_assoc($sql);
+   $sql = $mysqli->query("DELETE FROM rat WHERE ratnumero = '$ratnumero' ");
+   $exclui = mysqli_fetch_assoc($sql);
 
 
-    if (mysql_affected_rows() !=0) {
+    if (mysqli_affected_rows($mysqli) !=0) {
 
 ?>
                   <div class="alert alert-success" role="alert"> RAT Excluída com Sucesso </div> 

@@ -1,10 +1,10 @@
 <?php
 session_start();
-include_once("conecta.php");
+$mysqli = include_once("conecta.php");
 include_once("security.php");
 include ("defaultadmin.php");
-$resultado=mysql_query("SELECT * FROM usuarios ORDER BY 'uid'");
-$linhas=mysql_num_rows($resultado);
+$resultado = $mysqli->query("SELECT * FROM usuarios ORDER BY 'uid'");
+$linhas = mysqli_num_rows($resultado);
 ?>
 
 <!doctype html>
@@ -43,7 +43,7 @@ $linhas=mysql_num_rows($resultado);
         </thead>
         <tbody>
           <?php 
-          while($linhas = mysql_fetch_array($resultado)){
+          while($linhas = mysqli_fetch_array($resultado)){
             echo "<tr>";
             echo "<td>".$linhas['uid']."</td>";
             echo "<td>".$linhas['nome']."</td>";

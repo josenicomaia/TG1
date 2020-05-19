@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once("conecta.php");
+$mysqli = include_once("conecta.php");
 include_once("security.php");
 include ("defaulttech.php");
 
@@ -17,9 +17,9 @@ $_SESSION['RazaoSocial'] = $RazaoSocial;
 //  INNER JOIN clientes ON clientes.uid_cliente = contratos.cliente_uid
 //  INNER JOIN rat ON rat.ratcodotrs = contratos.codotrs where clientes.RazaoSocial Like '%$RazaoSocial%' or ratnumero ='$ratnumero' or rattipo = '$rattipo' and date(`ratdata`) between date('$datacriacao') and date('$datacriacaofinal') ORDER BY 'ratnumero' LIMIT 1");
 
-$resultado=mysql_query("SELECT * FROM contratos INNER JOIN clientes ON clientes.uid_cliente = contratos.cliente_uid  where clientes.RazaoSocial Like '%$RazaoSocial%' and contratos.tiposervicocontrato = 1");
+$resultado = $mysqli->query("SELECT * FROM contratos INNER JOIN clientes ON clientes.uid_cliente = contratos.cliente_uid  where clientes.RazaoSocial Like '%$RazaoSocial%' and contratos.tiposervicocontrato = 1");
 
-$consulta = mysql_fetch_assoc($resultado);
+$consulta = mysqli_fetch_assoc($resultado);
 
 
 //FUNCIONANDO!!

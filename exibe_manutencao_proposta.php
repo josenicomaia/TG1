@@ -1,6 +1,6 @@
 <?php
-session_start();
-    include_once("conecta.php");
+    session_start();
+    $mysqli = include_once("conecta.php");
     include_once("security.php");
     include("defaultcom.php");
     //$nome = $_POST['nome'];
@@ -16,9 +16,9 @@ session_start();
 
     // consulta das tabelas clientes e propostas
 
-     $resultado=mysql_query("SELECT propostas.*, clientes.* FROM propostas INNER JOIN clientes ON propostas.cliente_uid = clientes.uid_cliente where propostas.numero =  '$numero' LIMIT 1" );
-    $linhas=mysql_num_rows($resultado);
-    $consulta = mysql_fetch_assoc($resultado);
+     $resultado= $mysqli->query("SELECT propostas.*, clientes.* FROM propostas INNER JOIN clientes ON propostas.cliente_uid = clientes.uid_cliente where propostas.numero =  '$numero' LIMIT 1" );
+    $linhas=mysqli_num_rows($resultado);
+    $consulta = mysqli_fetch_assoc($resultado);
 
     $uid_cliente = $consulta['uid_cliente'];
     $datacriacao = $consulta['datacriacao'];

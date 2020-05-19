@@ -1,6 +1,6 @@
 <?php
 session_start();
-    include_once("conecta.php");
+    $mysqli = include_once("conecta.php");
     include_once("security.php");
     include ("defaultcom.php");
     $numero = $_SESSION['numero'];
@@ -44,9 +44,9 @@ session_start();
         }else{
  
       
-    $sql = mysql_query("UPDATE propostas SET arquivos='$arquivos', valor='$valor', estagio='$estagio', descricao='$descricao', datacriacao='$datacriacao', contato='$contato', email='$email', cliente_uid='$cliente_uid', resumo='$resumo', tiposervico='$tiposervico',numero='$numero', datamodificacao=NOW() WHERE numero='$numero'");
+    $sql = $mysqli->query("UPDATE propostas SET arquivos='$arquivos', valor='$valor', estagio='$estagio', descricao='$descricao', datacriacao='$datacriacao', contato='$contato', email='$email', cliente_uid='$cliente_uid', resumo='$resumo', tiposervico='$tiposervico',numero='$numero', datamodificacao=NOW() WHERE numero='$numero'");
 
-    if (mysql_affected_rows() !=0) {
+    if (mysqli_affected_rows($mysqli) !=0) {
 
 ?>
                   <div class="alert alert-success" role="alert"> Proposta Atualizada com Sucesso </div> 

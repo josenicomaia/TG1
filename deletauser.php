@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include_once("conecta.php");
+    $mysqli = include_once("conecta.php");
     include_once("security.php");
     include ("defaultadmin.php");
     $nome = $_POST['nome'];
@@ -21,11 +21,11 @@
     <body>
 <?php
     
-   $sql=mysql_query("DELETE FROM usuarios WHERE email = '$mail' "); 
-   $exclui = mysql_fetch_assoc($sql);
+   $sql = $mysqli->query("DELETE FROM usuarios WHERE email = '$mail' ");
+   $exclui = mysqli_fetch_assoc($sql);
 
 
-    if (mysql_affected_rows() !=0) {
+    if (mysqli_affected_rows($mysqli) !=0) {
 
 ?>
                   <div class="alert alert-success" role="alert"> Usuário Excluído com Sucesso </div> 

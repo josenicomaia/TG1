@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once("conecta.php");
+$mysqli = include_once("conecta.php");
 include_once("security.php");
 include("defaultcom.php");
 
@@ -35,12 +35,12 @@ $page = empty($_REQUEST['page'])?0:$_REQUEST['page'];
 
 
 
-$resultado=mysql_query("SELECT propostas.*, clientes.* FROM propostas INNER JOIN clientes ON propostas.cliente_uid = clientes.uid_cliente where clientes.Codigo like  '$codigo'  or clientes.RazaoSocial like '$RazaoSocial' or clientes.CNPJ like '$CNPJ' or propostas.numero like  '$numero' or propostas.estagio = '$estagio' or propostas.tiposervico = '$tiposervico' or propostas.datacriacao like '$datacriacao' LIMIT $page,1" );
-$linhas=mysql_num_rows($resultado);
-$consulta = mysql_fetch_assoc($resultado);
+$resultado = $mysqli->query("SELECT propostas.*, clientes.* FROM propostas INNER JOIN clientes ON propostas.cliente_uid = clientes.uid_cliente where clientes.Codigo like  '$codigo'  or clientes.RazaoSocial like '$RazaoSocial' or clientes.CNPJ like '$CNPJ' or propostas.numero like  '$numero' or propostas.estagio = '$estagio' or propostas.tiposervico = '$tiposervico' or propostas.datacriacao like '$datacriacao' LIMIT $page,1" );
+$linhas = mysqli_num_rows($resultado);
+$consulta = mysqli_fetch_assoc($resultado);
 
-$contador=mysql_query("SELECT COUNT(*) as count FROM propostas INNER JOIN clientes ON propostas.cliente_uid = clientes.uid_cliente where clientes.Codigo like  '$codigo'  or clientes.RazaoSocial like '$RazaoSocial' or clientes.CNPJ like '$CNPJ' or propostas.numero like  '$numero' or propostas.estagio = '$estagio' or propostas.tiposervico = '$tiposervico' or propostas.datacriacao like '$datacriacao'" );
-$totalcontador = mysql_fetch_assoc($contador);
+$contador = $mysqli->query("SELECT COUNT(*) as count FROM propostas INNER JOIN clientes ON propostas.cliente_uid = clientes.uid_cliente where clientes.Codigo like  '$codigo'  or clientes.RazaoSocial like '$RazaoSocial' or clientes.CNPJ like '$CNPJ' or propostas.numero like  '$numero' or propostas.estagio = '$estagio' or propostas.tiposervico = '$tiposervico' or propostas.datacriacao like '$datacriacao'" );
+$totalcontador = mysqli_fetch_assoc($contador);
 
 
 

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once("conecta.php");
+$mysqli = include_once("conecta.php");
 include_once("security.php");
 include ("defaultusers.php");
 
@@ -9,14 +9,14 @@ include ("defaultusers.php");
 
 
     if ($tiposervicocontrato == 0) {
-$resultado=mysql_query("SELECT contratos.*, clientes.RazaoSocial FROM contratos INNER JOIN clientes ON contratos.cliente_uid = clientes.uid_cliente WHERE status=1  ORDER BY RazaoSocial");
-$linhas=mysql_num_rows($resultado);}
+$resultado = $mysqli->query("SELECT contratos.*, clientes.RazaoSocial FROM contratos INNER JOIN clientes ON contratos.cliente_uid = clientes.uid_cliente WHERE status=1  ORDER BY RazaoSocial");
+$linhas = mysqli_num_rows($resultado);}
            
     else
     {       
             
-$resultado=mysql_query("SELECT contratos.*, clientes.RazaoSocial FROM contratos INNER JOIN clientes ON contratos.cliente_uid = clientes.uid_cliente WHERE status=1 and tiposervicocontrato=$tiposervicocontrato ORDER BY RazaoSocial");
-$linhas=mysql_num_rows($resultado);
+$resultado = $mysqli->query("SELECT contratos.*, clientes.RazaoSocial FROM contratos INNER JOIN clientes ON contratos.cliente_uid = clientes.uid_cliente WHERE status=1 and tiposervicocontrato=$tiposervicocontrato ORDER BY RazaoSocial");
+$linhas = mysqli_num_rows($resultado);
 
 }
 
@@ -59,7 +59,7 @@ $linhas=mysql_num_rows($resultado);
         </thead>
         <tbody>
           <?php 
-          while($linhas = mysql_fetch_array($resultado)){
+          while($linhas = mysqli_fetch_array($resultado)){
            $valortotal = (($valortotal) + ($linhas['valoratual']));
            if ($linhas['tiposervicocontrato'] == 1){
             $tpservico="Gestão e Suporte";

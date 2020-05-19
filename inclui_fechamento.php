@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once("conecta.php");
+$mysqli = include_once("conecta.php");
 include_once("security.php");
 include ("defaulttech.php");
 
@@ -22,10 +22,10 @@ $_SESSION['fechaano'] = $fechaano;
 
 
 
-$sql = mysql_query("INSERT INTO fechamento(fechaano, fechames, fecha0, fecha1, fecha2, fecha3, fecha4, fecha5, fecha69, fecha10) VALUES ($fechaano, $fechames, $fecha0, $fecha1, $fecha2, $fecha3, $fecha4, $fecha5, $fecha69, $fecha10)");
+$sql = $mysqli->query("INSERT INTO fechamento(fechaano, fechames, fecha0, fecha1, fecha2, fecha3, fecha4, fecha5, fecha69, fecha10) VALUES ($fechaano, $fechames, $fecha0, $fecha1, $fecha2, $fecha3, $fecha4, $fecha5, $fecha69, $fecha10)");
 
 
-if (mysql_affected_rows() !=0) {
+if (mysqli_affected_rows($mysqli) != 0) {
 
     ?>
     <div class="alert alert-success" role="alert"> Tempos Cadastrados com Sucesso </div> 

@@ -1,6 +1,6 @@
 <?php
 session_start();
-    include_once("conecta.php");
+    $mysqli = include_once("conecta.php");
     include_once("security.php");
     include ("defaulttech.php");
 
@@ -9,12 +9,12 @@ session_start();
     $datacriacaofinal = $_POST['datacriacaofinal'];
 
 
-    $resultado=mysql_query("SELECT * FROM contratos
+    $resultado = $mysqli->query("SELECT * FROM contratos
     INNER JOIN clientes ON clientes.uid_cliente = contratos.cliente_uid
     INNER JOIN rat ON rat.ratcodotrs = contratos.codotrs where date(`ratdata`) between date('$datacriacao') and date('$datacriacaofinal') ORDER BY 'ratnumero'");
 
     //$resultado=mysql_query("SELECT * FROM rat where date(`ratdata`) between date('$datacriacao') and date('$datacriacaofinal') ORDER BY 'ratnumero'");
-    $linhas=mysql_num_rows($resultado);
+    $linhas = mysqli_num_rows($resultado);
 ?>
 
 <!doctype html>
@@ -55,8 +55,8 @@ session_start();
             </thead>
             <tbody>
         <?php 
-          while($linhas = mysql_fetch_array($resultado)){
-            $totalhoras = strtotime($linhas['ratfim']) - strtotime($linha['ratinicio']);
+          while ($linhas = mysqli_fetch_array($resultado)) {
+            $totalhoras = strtotime($linhas['ratfim']) - strtotime($linhas['ratinicio']);
 
 
             echo "<tr>";

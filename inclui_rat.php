@@ -1,6 +1,6 @@
 <?php
 session_start();
-    include_once("conecta.php");
+    $mysqli = include_once("conecta.php");
     include_once("security.php");
     include ("defaulttech.php");
     $rattipo = $_POST['rattipo'];
@@ -26,10 +26,10 @@ session_start();
         }else{
 
       
-    $sql = mysql_query("INSERT INTO rat (rattipo, ratfim, ratinicio, ratnumero, ratcodotrs, ratdata) VALUES ('$rattipo', '$ratfim', '$ratinicio', '$ratnumero', '$ratcodotrs', '$ratdata')");
+    $sql = $mysqli->query("INSERT INTO rat (rattipo, ratfim, ratinicio, ratnumero, ratcodotrs, ratdata) VALUES ('$rattipo', '$ratfim', '$ratinicio', '$ratnumero', '$ratcodotrs', '$ratdata')");
        
 
-    if (mysql_affected_rows() !=0) {
+    if (mysqli_affected_rows($mysqli) != 0) {
 
 ?>
                   <div class="alert alert-success" role="alert"> RAT Cadastrada com Sucesso </div> 

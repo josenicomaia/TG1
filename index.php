@@ -1,11 +1,11 @@
 <?php
-include("conecta.php");
+$mysqli = include("conecta.php");
 
 // definir o numero de itens por pagina
 $itens_por_pagina = 10;
 
 // pegar a pagina atual
-$pagina = intval($_GET['pagina']);
+$pagina = intval($_GET['pagina'] ?? 0);
 
 // puxar produtos do banco
 $sql_code = "select pro_nome, pro_preco from produto LIMIT $pagina, $itens_por_pagina";

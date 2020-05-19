@@ -1,14 +1,14 @@
 <?php
 session_start();
-    include_once("conecta.php");
+    $mysqli = include_once("conecta.php");
     //include_once("security.php");
     include ("defaultcom.php");
 
     $datacriacao = $_POST['datacriacao'];
     $datacriacaofinal = $_POST['datacriacaofinal'];
 
-    $resultado=mysql_query("SELECT propostas.*, clientes.RazaoSocial FROM propostas INNER JOIN clientes ON propostas.cliente_uid = clientes.uid_cliente where propostas.estagio =  4 and date(`datacriacao`) between date('$datacriacao') and date('$datacriacaofinal')");
-    $linhas=mysql_num_rows($resultado);
+    $resultado = $mysqli->query("SELECT propostas.*, clientes.RazaoSocial FROM propostas INNER JOIN clientes ON propostas.cliente_uid = clientes.uid_cliente where propostas.estagio =  4 and date(`datacriacao`) between date('$datacriacao') and date('$datacriacaofinal')");
+    $linhas = mysqli_num_rows($resultado);
 
 
 ?>
@@ -50,7 +50,7 @@ session_start();
             </thead>
             <tbody>
         <?php 
-          while($linhas = mysql_fetch_array($resultado)){
+          while($linhas = mysqli_fetch_array($resultado)){
           $valortotal = (($valortotal) + ($linhas['valor']));
           
 

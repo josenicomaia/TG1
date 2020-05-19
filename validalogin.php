@@ -2,14 +2,14 @@
     session_start();
     $usuariologin = $_POST['usuario'];
     $senhalogin = $_POST['senha'];
-    include_once("conecta.php");
+    $mysqli = include_once("conecta.php");
     
     // GERAR MD5 DA SENHA ANTES DE VERIFICAR!!!
     $senhalogin = md5($senhalogin);
 
-    $result= mysql_query("SELECT * FROM  usuarios WHERE 
+    $result= $mysqli->query("SELECT * FROM  usuarios WHERE 
     	username ='$usuariologin' AND senha='$senhalogin' LIMIT 1");
-    $consultalogin = mysql_fetch_assoc($result);
+    $consultalogin = mysqli_fetch_assoc($result);
     //echo $consultalogin['nome'];
     if (empty($consultalogin)){
 //Exibir mensagem de erro

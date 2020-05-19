@@ -1,6 +1,6 @@
 <?php
 session_start();
-    include_once("conecta.php");
+    $mysqli = include_once("conecta.php");
     include_once("security.php");
     include ("defaultadmin.php");
 ?>
@@ -36,8 +36,8 @@ session_start();
 
 
     
-    $sql = mysql_query("SELECT * FROM usuarios WHERE email LIKE '%$email%' LIMIT 1");
-    $consulta = mysql_fetch_assoc($sql);
+    $sql = $mysqli->query("SELECT * FROM usuarios WHERE email LIKE '%$email%' LIMIT 1");
+    $consulta = mysqli_fetch_assoc($sql);
 
    
 if(($consulta['email']) == ""){

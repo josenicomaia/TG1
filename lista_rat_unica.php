@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once("conecta.php");
+$mysqli = include_once("conecta.php");
 include_once("security.php");
 include ("defaulttech.php");
 //include ("erros.php");
@@ -14,12 +14,12 @@ $_SESSION['ratnumero'] = $ratnumero;
 
 
 
-$resultado=mysql_query("SELECT * FROM contratos
+$resultado = $mysqli->query("SELECT * FROM contratos
   INNER JOIN clientes ON clientes.uid_cliente = contratos.cliente_uid
   INNER JOIN rat ON rat.ratcodotrs = contratos.codotrs where ratnumero ='$ratnumero' LIMIT 1");
 
 //$linhas=mysql_num_rows($resultado);
-$linhas = mysql_fetch_assoc($resultado);
+$linhas = mysqli_fetch_assoc($resultado);
 
     if(($linhas['ratnumero']) == ""){
 

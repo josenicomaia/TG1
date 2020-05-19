@@ -1,12 +1,12 @@
 <?php
-session_start();
-    include_once("conecta.php");
+    session_start();
+    $mysqli = include_once("conecta.php");
     include_once("security.php");
     include("defaultusers.php");
 
 
 
-$sql = mysql_query("INSERT INTO contratos (totalhoras, valorhorahe, tiposervicocontrato, email, contato, resumocontrato, historicocontrato, datacriacao, cliente_uid,codotrs, valorcontrato, valoratual ) VALUES ('$totalhoras', '$valorhorahe', '$tiposervicocontrato', '$email', '$contato', '$resumocontrato', '$historicocontrato', NOW(), '$uid_cliente', '$codotrs', '$valorcontrato', '$valoratual')");
+$sql = $mysqli->query("INSERT INTO contratos (totalhoras, valorhorahe, tiposervicocontrato, email, contato, resumocontrato, historicocontrato, datacriacao, cliente_uid,codotrs, valorcontrato, valoratual ) VALUES ('$totalhoras', '$valorhorahe', '$tiposervicocontrato', '$email', '$contato', '$resumocontrato', '$historicocontrato', NOW(), '$uid_cliente', '$codotrs', '$valorcontrato', '$valoratual')");
 
 
 
@@ -42,12 +42,12 @@ $sql = mysql_query("INSERT INTO contratos (totalhoras, valorhorahe, tiposervicoc
 
 
 
-   $resultado=mysql_query("SELECT contratos.*, clientes.* FROM contratos INNER JOIN clientes ON contratos.cliente_uid = clientes.uid_cliente where  clientes.RazaoSocial like '$RazaoSocial' or clientes.CNPJ like '$CNPJ' or contratos.totalhoras like  '$totalhoras' or contratos.codotrs like  '$codotrs' or contratos.tiposervicocontrato = '$tiposervicocontrato' or contratos.status = '$status' or contratos.uid_contrato = '$uid_contrato' LIMIT $page,1" );
-    $linhas=mysql_num_rows($resultado);
-    $consulta = mysql_fetch_assoc($resultado);
+   $resultado = $mysqli->query("SELECT contratos.*, clientes.* FROM contratos INNER JOIN clientes ON contratos.cliente_uid = clientes.uid_cliente where  clientes.RazaoSocial like '$RazaoSocial' or clientes.CNPJ like '$CNPJ' or contratos.totalhoras like  '$totalhoras' or contratos.codotrs like  '$codotrs' or contratos.tiposervicocontrato = '$tiposervicocontrato' or contratos.status = '$status' or contratos.uid_contrato = '$uid_contrato' LIMIT $page,1" );
+    $linhas = mysqli_num_rows($resultado);
+    $consulta = mysqli_fetch_assoc($resultado);
 
-    $contador=mysql_query("SELECT COUNT(*) as count FROM contratos INNER JOIN clientes ON contratos.cliente_uid = clientes.uid_cliente where  clientes.RazaoSocial like '$RazaoSocial' or clientes.CNPJ like '$CNPJ' or contratos.totalhoras like  '$totalhoras' or contratos.codotrs like  '$codotrs' or contratos.tiposervicocontrato = '$tiposervicocontrato' or contratos.status = '$status' or contratos.uid_contrato = '$uid_contrato'" );
-    $totalcontador = mysql_fetch_assoc($contador);
+    $contador = $mysqli->query("SELECT COUNT(*) as count FROM contratos INNER JOIN clientes ON contratos.cliente_uid = clientes.uid_cliente where  clientes.RazaoSocial like '$RazaoSocial' or clientes.CNPJ like '$CNPJ' or contratos.totalhoras like  '$totalhoras' or contratos.codotrs like  '$codotrs' or contratos.tiposervicocontrato = '$tiposervicocontrato' or contratos.status = '$status' or contratos.uid_contrato = '$uid_contrato'" );
+    $totalcontador = mysqli_fetch_assoc($contador);
    
 ?>
 

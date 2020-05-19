@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once("conecta.php");
+$mysqli = include_once("conecta.php");
 include_once("security.php");
 include ("defaulttech.php");
 //include ("erros.php");
@@ -74,12 +74,12 @@ if ($datacriacao != "" &&  $datacriacaofinal != "") {
 }
 
 
-$resultado=mysql_query("SELECT * FROM contratos
+$resultado = $mysqli->query("SELECT * FROM contratos
   INNER JOIN clientes ON clientes.uid_cliente = contratos.cliente_uid
   INNER JOIN rat ON rat.ratcodotrs = contratos.codotrs where $sqlwhere and contratos.tiposervicocontrato = 1 ORDER BY ratdata");
 
 
-$linhas=mysql_num_rows($resultado);
+$linhas = mysqli_num_rows($resultado);
 
 
 //$consulta = mysql_fetch_assoc($resultado);
@@ -207,7 +207,7 @@ if (($ratcodotrs == "") && ($ratnumero == "") && ($rattipo == "Selecione...")) {
 
 
 
-          while($linhas = mysql_fetch_assoc($resultado)){
+          while($linhas = mysqli_fetch_assoc($resultado)){
 
             echo "<tr>";
             echo "<td>".$linhas['ratnumero']."</td>";

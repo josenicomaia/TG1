@@ -1,6 +1,6 @@
 <?php
 session_start();
-    include_once("conecta.php");
+    $mysqli = include_once("conecta.php");
     include_once("security.php");
     include ("defaultusers.php");
     $uid_contrato = $_SESSION['uid_contrato'];
@@ -53,9 +53,9 @@ session_start();
         }else{
  
 
- $sql = mysql_query("UPDATE contratos SET totalhoras='$totalhoras', valorhorahe='$valorhorahe', tiposervicocontrato='$tiposervicocontrato', emailcontrato='$emailcontrato', contatocontrato='$contatocontrato', resumocontrato='$resumocontrato', historicocontrato='$historicocontrato', datacriacao='$datacriacao', cliente_uid='$uid_cliente', codotrs='$codotrs', valorcontrato='$valorcontrato', valoratual='$valoratual', datamodificacao=NOW(), status='$status', dataassinatura='$dataassinatura' WHERE uid_contrato='$uid_contrato' "); 
+ $sql = $mysqli->query("UPDATE contratos SET totalhoras='$totalhoras', valorhorahe='$valorhorahe', tiposervicocontrato='$tiposervicocontrato', emailcontrato='$emailcontrato', contatocontrato='$contatocontrato', resumocontrato='$resumocontrato', historicocontrato='$historicocontrato', datacriacao='$datacriacao', cliente_uid='$uid_cliente', codotrs='$codotrs', valorcontrato='$valorcontrato', valoratual='$valoratual', datamodificacao=NOW(), status='$status', dataassinatura='$dataassinatura' WHERE uid_contrato='$uid_contrato' ");
 
-    if (mysql_affected_rows() !=0) {
+    if (mysqli_affected_rows($mysqli) !=0) {
 
 ?>
                   <div class="alert alert-success" role="alert"> Contrato atualizado com Sucesso </div> 

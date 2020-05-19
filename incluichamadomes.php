@@ -1,6 +1,6 @@
 <?php
 session_start();
-    include ("conecta.php");
+    $mysqli = include ("conecta.php");
     include_once ("security.php");
     include ("defaulttech.php");
     $ajan = $_POST['ajan'];
@@ -30,15 +30,15 @@ session_start();
     $fdez = $_POST['fdez'];
     $ano = $_SESSION['ano'];
 
-    $consultaano = mysql_query("SELECT * FROM chamadospormes where ano = '$ano' ");
-    $arrayano = mysql_fetch_assoc($consultaano);
-$testeano = mysql_num_rows($consultaano);
+    $consultaano = $mysqli->query("SELECT * FROM chamadospormes where ano = '$ano' ");
+    $arrayano = mysqli_fetch_assoc($consultaano);
+    $testeano = mysqli_num_rows($consultaano);
 
     if ($testeano == 0) {
 
-        $incluiano = mysql_query("INSERT INTO chamadospormes (ano) VALUES ('$ano') ");
+        $incluiano = $mysqli->query("INSERT INTO chamadospormes (ano) VALUES ('$ano') ");
 
-        if (mysql_affected_rows() >0) {
+        if (mysqli_affected_rows($mysqli) >0) {
 
                 ?>
                   <div class="alert alert-success" role="alert"> Ano Cadastrado com Sucesso </div> 
@@ -48,10 +48,10 @@ $testeano = mysql_num_rows($consultaano);
     }
 
 
-    $sql = mysql_query("UPDATE chamadospormes SET ajan='$ajan', fjan='$fjan',afev='$afev', ffev='$ffev', amar='$amar', fmar='$fmar',aabr='$aabr',fabr='$fabr', amai='$amai', fmai='$fmai', ajun='$ajun', fjun='$fjun', ajul='$ajul', fjul='$fjul', aago='$aago',fago='$fago', aset='$aset', fset='$fset', aout='$aout', fout='$fout', anov='$anov', fnov='$fnov', adez='$adez', fdez='$fdez'  WHERE ano = '$ano' ");
+    $sql = $mysqli->query("UPDATE chamadospormes SET ajan='$ajan', fjan='$fjan',afev='$afev', ffev='$ffev', amar='$amar', fmar='$fmar',aabr='$aabr',fabr='$fabr', amai='$amai', fmai='$fmai', ajun='$ajun', fjun='$fjun', ajul='$ajul', fjul='$fjul', aago='$aago',fago='$fago', aset='$aset', fset='$fset', aout='$aout', fout='$fout', anov='$anov', fnov='$fnov', adez='$adez', fdez='$fdez'  WHERE ano = '$ano' ");
        
 
-    if (mysql_affected_rows() !=0) {
+    if (mysqli_affected_rows($mysqli) !=0) {
 
 ?>
                   <div class="alert alert-success" role="alert"> Quantidade de Chamados Cadastrados com Sucesso </div> 

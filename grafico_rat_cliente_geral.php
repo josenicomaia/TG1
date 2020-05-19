@@ -1,6 +1,6 @@
 <?php
 session_start();
-    include_once("conecta.php");
+    $mysqli = include_once("conecta.php");
     //include_once("security.php");
     include ("defaultusers.php");
 
@@ -26,11 +26,11 @@ session_start();
 
 
 
-       $resultado=mysql_query("SELECT * FROM contratos
+       $resultado = $mysqli->query("SELECT * FROM contratos
     INNER JOIN clientes ON clientes.uid_cliente = contratos.cliente_uid
     INNER JOIN rat ON rat.ratcodotrs = contratos.codotrs");
 
-       $total=mysql_num_rows($resultado);
+       $total = mysqli_num_rows($resultado);
 
       echo $total;
 

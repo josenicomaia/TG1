@@ -1,6 +1,6 @@
 <?php
 session_start();
-    include_once("conecta.php");
+    $mysqli = include_once("conecta.php");
     include_once("security.php");
     include ("defaultusers.php");
 ?>
@@ -79,15 +79,15 @@ if ($numRegistros!=0) {
         
         // Verifica se Registro Existe no Banco MySql
         $existe = "SELECT codigo from clientes where codigo = $Linha[$campo1]";
-        $resultadoexiste = mysql_query($existe);
-        $existelinhas = mysql_num_rows($resultadoexiste);
+        $resultadoexiste = $mysqli->query($existe);
+        $existelinhas = mysqli_num_rows($resultadoexiste);
 
 
         if($existelinhas == 0){ //Se não existe existe (insere o registro no banco mysql)
 
-        	$sql = mysql_query("INSERT INTO clientes (Codigo, RazaoSocial, CNPJ, Endereco, Cidade, Bairro, CEP, InscricaoEstatual, Telefone1, Telefone2, Contato, Email, Observacao, Tipo, Descricao, Ativo) VALUES ('$Linha[$campo1]', '$Linha[$campo2]', '$Linha[$campo21]', '$Linha[$campo22]', '$Linha[$campo23]', '$Linha[$campo24]', '$Linha[$campo25]', '$Linha[$campo26]', '$Linha[$campo3]', '$Linha[$campo31]', '$Linha[$campo4]', '$Linha[$campo5]', '$Linha[$campo6]', '$Linha[$campo7]', '$Linha[$campo8]', '$Linha[$campo9]')");
+        	$sql = $mysqli->query("INSERT INTO clientes (Codigo, RazaoSocial, CNPJ, Endereco, Cidade, Bairro, CEP, InscricaoEstatual, Telefone1, Telefone2, Contato, Email, Observacao, Tipo, Descricao, Ativo) VALUES ('$Linha[$campo1]', '$Linha[$campo2]', '$Linha[$campo21]', '$Linha[$campo22]', '$Linha[$campo23]', '$Linha[$campo24]', '$Linha[$campo25]', '$Linha[$campo26]', '$Linha[$campo3]', '$Linha[$campo31]', '$Linha[$campo4]', '$Linha[$campo5]', '$Linha[$campo6]', '$Linha[$campo7]', '$Linha[$campo8]', '$Linha[$campo9]')");
 
-        	if (mysql_affected_rows() !=0) {
+        	if (mysqli_affected_rows($mysqli) !=0) {
 
 				?>
                   <div class="alert alert-success" role="alert"> Registro Criado com Sucesso! </div> 
@@ -100,10 +100,10 @@ if ($numRegistros!=0) {
        }else{ // Se existir o registro faz atualização do Campo no Banco MySQL
 
 
-			$sql = mysql_query("UPDATE clientes SET Codigo='$Linha[$campo1]', RazaoSocial='$Linha[$campo2]', CNPJ='$Linha[$campo21]', Endereco='$Linha[$campo22]', Cidade='$Linha[$campo23]', Bairro='$Linha[$campo24]', CEP='$Linha[$campo25]', InscricaoEstatual='$Linha[$campo26]', Telefone1='$Linha[$campo3]', Telefone2='$Linha[$campo31]', Contato='$Linha[$campo4]', Email='$Linha[$campo5]', Observacao='$Linha[$campo6]', Tipo='$Linha[$campo7]', Descricao='$Linha[$campo8]', Ativo='$Linha[$campo9]' WHERE Codigo=$Linha[$campo1] ");
+			$sql = $mysqli->query("UPDATE clientes SET Codigo='$Linha[$campo1]', RazaoSocial='$Linha[$campo2]', CNPJ='$Linha[$campo21]', Endereco='$Linha[$campo22]', Cidade='$Linha[$campo23]', Bairro='$Linha[$campo24]', CEP='$Linha[$campo25]', InscricaoEstatual='$Linha[$campo26]', Telefone1='$Linha[$campo3]', Telefone2='$Linha[$campo31]', Contato='$Linha[$campo4]', Email='$Linha[$campo5]', Observacao='$Linha[$campo6]', Tipo='$Linha[$campo7]', Descricao='$Linha[$campo8]', Ativo='$Linha[$campo9]' WHERE Codigo=$Linha[$campo1] ");
 
 
-        	if (mysql_affected_rows() !=0) {
+        	if (mysqli_affected_rows($mysqli) !=0) {
 
 				?>
                   <div class="alert alert-success" role="alert"> Registro Atualizado com Sucesso! </div>  

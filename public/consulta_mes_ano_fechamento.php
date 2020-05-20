@@ -6,10 +6,6 @@ include_once("security.php");
 include("defaulttech.php");
 
 ?>
-
-
-
-
 <!doctype html>
 <html lang="pt-br">
 <head>
@@ -51,7 +47,7 @@ include("defaulttech.php");
         <div class="form-group col-md-3">
           <label for="fechames" class="col-form-label-sm"> Mês </label>
           <select nome="fechames" class="form-control" name="fechames">
-            <option >Selecionar...</option>
+            <option value="">Selecionar...</option>
             <option value="01">Janeiro</option>
             <option value="02">Fevereiro</option>
             <option value="03">Março</option>

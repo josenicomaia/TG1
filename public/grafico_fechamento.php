@@ -4,7 +4,7 @@ $mysqli = include_once("conecta.php");
 include_once("security.php");
 include ("defaulttech.php");
 
-$fechames = empty($_POST['fechames']) ? $_SESSION['fechames'] : $_POST['fechames'];
+$fechames = $_POST['fechames'] ?? $_SESSION['fechames'];
 $_SESSION['fechames'] = $fechames;
 
 $fechaano = empty($_POST['fechaano'])?$_SESSION['fechaano']:$_POST['fechaano'];
@@ -63,7 +63,7 @@ $consulta = mysqli_fetch_assoc($sql);
   <body>
     <div class="starter-template">
       <h3>Chamados - Tempo total </h3>
-      <h6> Mês <?php echo $fechames; ?> Ano <?php echo $fechaano; ?> </h6>
+      <h6><?php if ($fechames) { echo "Mês $fechames"; } ?> Ano <?php echo $fechaano; ?> </h6>
       <br />
 
       <div id="donutchart" style="width: 810px; height: 450px;"></div>

@@ -6,17 +6,12 @@ include ("defaultadmin.php");
 $resultado = $mysqli->query("SELECT * FROM usuarios ORDER BY 'uid'");
 $linhas = mysqli_num_rows($resultado);
 ?>
-
 <!doctype html>
 <html lang="pt-br">
 <head>
  <title>Dashboard - Admin Área</title> 
-
-
-
 </head>
 <body>
-
 	<main role="main" class="container">
 
     <div class="starter-template">
@@ -26,9 +21,7 @@ $linhas = mysqli_num_rows($resultado);
 
     <!-- INICIO DA LISTA DE USUARIOS -->
 
-
     <div class="col-md-12">
-
 
       <table class="table table-hover table-sm">
         <thead class="thead-dark">
@@ -38,7 +31,6 @@ $linhas = mysqli_num_rows($resultado);
             <th>Login</th>
             <th>E-mail</th>
             <th>Perfil</th>
-
           </tr>
         </thead>
         <tbody>
@@ -50,17 +42,12 @@ $linhas = mysqli_num_rows($resultado);
             echo "<td>".$linhas['username']."</td>";
             echo "<td>".$linhas['email']."</td>";
             echo "<td>".$linhas['id_acesso']."</td>";
-
             echo "</tr>";
           }
           ?>
         </tbody>
       </table>
     </div>
-
-
-
-
 
   </main>
 

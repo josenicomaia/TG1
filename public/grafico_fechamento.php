@@ -4,18 +4,19 @@ $mysqli = include_once("conecta.php");
 include_once("security.php");
 include ("defaulttech.php");
 
-$fechames = empty($_POST['fechames'])?$_SESSION['fechames']:$_POST['fechames'];
+$fechames = empty($_POST['fechames']) ? $_SESSION['fechames'] : $_POST['fechames'];
 $_SESSION['fechames'] = $fechames;
 
 $fechaano = empty($_POST['fechaano'])?$_SESSION['fechaano']:$_POST['fechaano'];
 $_SESSION['fechaano'] = $fechaano;
 
+if ($fechames) {
+    $sql = $mysqli->query("SELECT * FROM fechamento WHERE fechaano = '$fechaano' and fechames = '$fechames' ");
+} else {
+    $sql = $mysqli->query("SELECT * FROM fechamento WHERE fechaano = '$fechaano' ");
+}
 
-
-
-$sql = $mysqli->query("SELECT * FROM fechamento WHERE fechaano = '$fechaano' and fechames = '$fechames' ");
 $consulta = mysqli_fetch_assoc($sql);
-
 ?>
 
 

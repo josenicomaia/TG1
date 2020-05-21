@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d5ae7ca3-3605-4bd9-beb6-4c6ecc3d19fb" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="ProjectId" id="1c6eMS0ry0YIP62HpLoNCgsK7uQ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
+  </component>
+  <component name="RunManager">
+    <configuration name="start" type="docker-deploy" factoryName="docker-compose.yml" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="workspace" />
+              <option value="nginx" />
+              <option value="mysql" />
+              <option value="phpmyadmin" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="../laradock/docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>$USER_HOME$/.subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d5ae7ca3-3605-4bd9-beb6-4c6ecc3d19fb" name="Default Changelist" comment="" />
+      <created>1589853421831</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1589853421831</updated>
+      <workItem from="1589853423564" duration="283000" />
+      <workItem from="1589853727602" duration="1203000" />
+      <workItem from="1589855014143" duration="7701000" />
+      <workItem from="1589929209193" duration="4435000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="311" y="104" key="#Docker" timestamp="1589855326117">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="311" y="104" key="#Docker/0.23.1440.797@0.23.1440.797" timestamp="1589855326117" />
+    <state x="396" y="71" key="#PHP" timestamp="1589859911266">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="396" y="71" key="#PHP/0.23.1440.797@0.23.1440.797" timestamp="1589859911266" />
+    <state x="99" y="258" key="#SQL_Dialects" timestamp="1589857273281">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="99" y="258" key="#SQL_Dialects/0.23.1440.797@0.23.1440.797" timestamp="1589857273281" />
+    <state x="310" y="94" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1589937930032">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="310" y="94" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.797@0.23.1440.797" timestamp="1589937930032" />
+    <state x="570" y="301" key="DockerComposeFileDialog" timestamp="1589855349288">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="570" y="301" key="DockerComposeFileDialog/0.23.1440.797@0.23.1440.797" timestamp="1589855349288" />
+    <state width="958" height="213" key="GridCell.Tab.0.bottom" timestamp="1589933919433">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state width="958" height="213" key="GridCell.Tab.0.bottom/0.23.1440.797@0.23.1440.797" timestamp="1589933919433" />
+    <state width="958" height="213" key="GridCell.Tab.0.center" timestamp="1589933919432">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state width="958" height="213" key="GridCell.Tab.0.center/0.23.1440.797@0.23.1440.797" timestamp="1589933919432" />
+    <state width="958" height="213" key="GridCell.Tab.0.left" timestamp="1589933919431">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state width="958" height="213" key="GridCell.Tab.0.left/0.23.1440.797@0.23.1440.797" timestamp="1589933919431" />
+    <state width="958" height="213" key="GridCell.Tab.0.right" timestamp="1589933919432">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state width="958" height="213" key="GridCell.Tab.0.right/0.23.1440.797@0.23.1440.797" timestamp="1589933919432" />
+    <state x="229" y="60" key="SettingsEditor" timestamp="1589858176916">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="229" y="60" key="SettingsEditor/0.23.1440.797@0.23.1440.797" timestamp="1589858176916" />
+    <state width="500" height="445" key="SwitcherDM" timestamp="1589930692101">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state width="500" height="445" key="SwitcherDM/0.23.1440.797@0.23.1440.797" timestamp="1589930692101" />
+    <state x="511" y="342" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1589853885347">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="511" y="342" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1440.797@0.23.1440.797" timestamp="1589853885347" />
+    <state x="421" y="176" width="598" height="490" key="find.popup" timestamp="1589933382771">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="421" y="176" width="598" height="490" key="find.popup/0.23.1440.797@0.23.1440.797" timestamp="1589933382771" />
+    <state x="385" y="144" width="670" height="676" key="search.everywhere.popup" timestamp="1589933854525">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="385" y="144" width="670" height="676" key="search.everywhere.popup/0.23.1440.797@0.23.1440.797" timestamp="1589933854525" />
+  </component>
+</project>

@@ -1,9 +1,15 @@
 import React from 'react';
+import classNames from 'classnames';
+import Validator from '../Validator';
 
 class Group extends React.Component {
     constructor(props) {
         super(props);
         this.onChangeForm = this.props.onChangeForm || (() => {});
+
+        this.validator = this.props.validator || new Validator({
+            description: 'required|string|min:3'
+        });
 
         this.initialState = {
             description: props.group.description || ''
@@ -19,8 +25,9 @@ class Group extends React.Component {
             [id]: value
         };
 
+        this.validator.validate(newState);
         this.onChangeForm(newState);
-        this.setState(newState);
+        this.setState(Object.assign({}, this.state, newState));
     }
 
     render() {
@@ -29,7 +36,9 @@ class Group extends React.Component {
         return (
             <div className="form-group">
                 <label htmlFor="description">Descrição</label>
-                <input className="form-control" id="description" value={description} onChange={this._handleChange} />
+                <input className={classNames('form-control', {
+                    'is-invalid': this.validator.fails('description')
+                })} id="description" value={description} onChange={this._handleChange} />
             </div>
         );
     }

@@ -1,11 +1,18 @@
-import React, {Fragment} from 'react';
-import Group from "./Group";
+import React from 'react';
+import Group from './Group';
+import Validator from '../Validator';
 
 class EditGroup extends React.Component {
     constructor(props) {
         super(props);
         this.groupRepository = props.groupRepository;
-        this.state = props.group;
+
+        this.validator = new Validator({
+            description: 'required|string|min:3'
+        });
+
+        this.initialState = props.group;
+        this.state = this.initialState;
     }
 
     _save = (event) => {
@@ -13,7 +20,7 @@ class EditGroup extends React.Component {
         this.groupRepository.save(this.state);
     }
 
-    _handleChangeGroupForm = (createGroup) => {
+    _handleGroupFormChange = (createGroup) => {
         this.setState(Object.assign({}, this.state, createGroup));
     }
 
@@ -31,10 +38,10 @@ class EditGroup extends React.Component {
                             <label htmlFor="id">ID</label>
                             <input className="form-control" id="id" value={group.id} disabled />
                         </div>
-                        <Group group={group} onChangeForm={this._handleChangeGroupForm} />
+                        <Group group={group} onChangeForm={this._handleGroupFormChange} validator={this.validator} />
                         <div className="dropdown-divider" />
                         <div className="text-right">
-                            <button type="submit" className="btn btn-primary">Salvar</button>
+                            <button type="submit" className="btn btn-primary" disabled={this.validator.fails()}>Salvar</button>
                         </div>
                     </form>
                 </div>

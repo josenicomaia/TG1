@@ -28,8 +28,8 @@ class App extends React.Component {
                 <div className="app-component container">
                     <div className="row justify-content-center">
                         <div className="col-md-12">
-                            <EditGroup group={this.state.group} groupRepository={this.groupRepository} />
-                            {/*<CreateGroup criarGrupo={this.state.criarGrupo} />*/}
+                            <CreateGroup groupRepository={this.groupRepository} />
+                            <EditGroup groupRepository={this.groupRepository} group={this.state.group} />
                         </div>
                     </div>
                 </div>

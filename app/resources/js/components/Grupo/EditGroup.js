@@ -17,7 +17,7 @@ class EditGroup extends React.Component {
 
     _save = (event) => {
         event.preventDefault();
-        this.groupRepository.save(this.state);
+        this.groupRepository.save(this.state).subscribe();
     }
 
     _handleGroupFormChange = (createGroup) => {

@@ -29,6 +29,7 @@ class App extends React.Component {
                     <div className="row justify-content-center">
                         <div className="col-md-12">
                             <CreateGroup groupRepository={this.groupRepository} />
+                            <br />
                             <EditGroup groupRepository={this.groupRepository} group={this.state.group} />
                         </div>
                     </div>

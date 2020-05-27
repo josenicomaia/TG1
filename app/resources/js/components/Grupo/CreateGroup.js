@@ -20,7 +20,7 @@ class CreateGroup extends React.Component {
 
     _create = (event) => {
         event.preventDefault();
-        this.groupRepository.create(this.state);
+        this.groupRepository.create(this.state).subscribe();
     }
 
     _handleGroupFormChange = (createGroup) => {

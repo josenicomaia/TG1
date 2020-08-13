@@ -1,4 +1,10 @@
 @extends('layouts.app')
+@section('breadcrumb')
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Movimentações Financeiras</li>
+    </ol>
+@endsection
 @section('content')
     <div class="container">
         <div class="card">

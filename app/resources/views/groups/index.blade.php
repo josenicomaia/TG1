@@ -1,9 +1,15 @@
 @extends('layouts.app')
+@section('breadcrumb')
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Categorias</li>
+</ol>
+@endsection
 @section('content')
     <div class="container">
         <div class="card">
             <div class="card-header">
-                Grupos
+                Categorias
             </div>
             <div class="card-body">
                 @if(count($groups))

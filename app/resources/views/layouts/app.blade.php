@@ -37,7 +37,7 @@
                             <a class="nav-link" href="/entries">Movimentações Financeiras</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/groups">Grupos</a>
+                            <a class="nav-link" href="/groups">Categorias</a>
                         </li>
                     </ul>
 
@@ -49,6 +49,12 @@
         </nav>
 
         <main class="py-4">
+            <nav aria-label="breadcrumb">
+                <div class="container">
+                    @yield('breadcrumb')
+                </div>
+            </nav>
+
             @yield('content')
         </main>
     </div>

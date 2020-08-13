@@ -1,12 +1,12 @@
-@extends('groups.base')
+@extends('entries.base')
 @section('content')
 <div class="container">
     <div class="card">
         <div class="card-header">
-            Cadastrar Grupo
+            Cadastrar Movimentação Financeira
         </div>
         <div class="card-body">
-            <form action="/groups" method="post">
+            <form action="/entries" method="post">
                 @csrf
                 @parent
                 <div class="dropdown-divider"></div>

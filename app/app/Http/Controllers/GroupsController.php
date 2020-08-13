@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Group;
 use Illuminate\Http\Request;
 
-class GroupsController extends Controller
-{
+class GroupsController extends Controller {
     public function index() {
         return view('groups.index', [
             'groups' => Group::all()
@@ -14,7 +13,9 @@ class GroupsController extends Controller
     }
 
     public function create() {
-        return view('groups.create');
+        return view('groups.create', [
+            'group' => new Group()
+        ]);
     }
 
     public function store(Request $request) {
@@ -22,8 +23,6 @@ class GroupsController extends Controller
         $group->save();
 
         return redirect("/groups");
-
-//        return redirect("/groups/{$group->id}/edit");
     }
 
     public function edit(Group $group) {
@@ -35,6 +34,12 @@ class GroupsController extends Controller
     public function update(Request $request, Group $group) {
         $group->fill($request->all())
             ->save();
+
+        return redirect("/groups");
+    }
+
+    public function destroy(Group $group) {
+        $group->delete();
 
         return redirect("/groups");
     }

@@ -17,9 +17,10 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
-Auth::routes();
+//Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
-//Route::view('/{path?}', 'app');
 Route::resource('groups', 'GroupsController');
+Route::resource('entries', 'EntriesController');
+

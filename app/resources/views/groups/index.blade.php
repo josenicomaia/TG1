@@ -12,7 +12,7 @@
                         <thead>
                             <tr>
                                 <th class="w-25" scope="col">#</th>
-                                <th class="w-50" scope="col">Description</th>
+                                <th class="w-auto" scope="col">Descrição</th>
                                 <th class="w-25 text-center">
                                     <a href="/groups/create">
                                         <img src="/icons/plus-circle.svg" />
@@ -26,14 +26,18 @@
                                 <th scope="row">{{$group->id}}</th>
                                 <td>{{$group->description}}</td>
                                 <td class="text-center">
-                                    <a href="/groups/{{$group->id}}/edit">
-                                        <img src="/icons/pencil.svg" />
-                                        Editar
-                                    </a>
-                                    <a href="/groups/{{$group->id}}">
-                                        <img src="/icons/x-circle.svg" />
-                                        Apagar
-                                    </a>
+                                    <form action="/groups/{{$group->id}}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <a href="/groups/{{$group->id}}/edit">
+                                            <img src="/icons/pencil.svg" />
+                                            Editar
+                                        </a>
+                                        <button type="submit" class="btn btn-link">
+                                            <img src="/icons/x-circle.svg" />
+                                            Apagar
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
@@ -42,7 +46,7 @@
                 </div>
                 @else
                 <div class="alert alert-info">
-                    Nenhum grupo encontrado.
+                    Nenhum grupo encontrado. Clique <a href="/groups/create">aqui</a> para começar a criar.
                 </div>
                 @endif
             </div>

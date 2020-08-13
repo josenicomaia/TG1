@@ -46,7 +46,7 @@
                     </div>
                 @else
                     <div class="alert alert-info">
-                        Nenhum grupo encontrado. Clique <a href="/entries/create">aqui</a> para começar a criar.
+                        Nenhuma movimentação financeira encontrada. Clique <a href="/entries/create">aqui</a> para começar a criar.
                     </div>
                 @endif
             </div>

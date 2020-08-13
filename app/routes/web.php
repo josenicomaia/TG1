@@ -21,4 +21,5 @@ Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
-Route::view('/{path?}', 'app');
+//Route::view('/{path?}', 'app');
+Route::resource('groups', 'GroupsController');

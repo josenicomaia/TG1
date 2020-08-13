@@ -10,11 +10,11 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
+mix.sass('resources/sass/app.scss', 'public/css');
 
-mix.react('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+mix.copyDirectory('node_modules/bootstrap-icons/icons', 'public/icons');
 
 mix.browserSync({
     open: false,
-    proxy: 'nginx'
+    proxy: 'localhost:8000'
 });

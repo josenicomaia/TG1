@@ -17,9 +17,9 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th class="w-25" scope="col">#</th>
-                                <th class="w-auto" scope="col">Descrição</th>
-                                <th class="w-25 text-center">
+                                <th scope="col">#</th>
+                                <th width="66%" scope="col">Descrição</th>
+                                <th width="33%" class="text-center">
                                     <a href="/groups/create">
                                         <img src="/icons/plus-circle.svg" />
                                     </a>
@@ -28,24 +28,7 @@
                         </thead>
                         <tbody>
                             @foreach($groups as $group)
-                            <tr>
-                                <th scope="row">{{$group->id}}</th>
-                                <td>{{$group->description}}</td>
-                                <td class="text-center">
-                                    <form action="/groups/{{$group->id}}" method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <a href="/groups/{{$group->id}}/edit">
-                                            <img src="/icons/pencil.svg" />
-                                            Editar
-                                        </a>
-                                        <button type="submit" class="btn btn-link">
-                                            <img src="/icons/x-circle.svg" />
-                                            Apagar
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
+                                @include('groups.index_group_tr', $group)
                             @endforeach
                         </tbody>
                     </table>

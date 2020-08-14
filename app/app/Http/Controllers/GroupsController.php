@@ -8,13 +8,13 @@ use Illuminate\Http\Request;
 class GroupsController extends Controller {
     public function index() {
         return view('groups.index', [
-            'groups' => Group::all()
+            'groups' => Group::firstLevelOrderedByOrder()
         ]);
     }
 
-    public function create() {
+    public function create(Request $request) {
         return view('groups.create', [
-            'group' => new Group()
+            'group' => new Group($request->all())
         ]);
     }
 
@@ -35,12 +35,12 @@ class GroupsController extends Controller {
         $group->fill($request->all())
             ->save();
 
-        return redirect("/groups");
+        return redirect('/groups');
     }
 
     public function destroy(Group $group) {
         $group->delete();
 
-        return redirect("/groups");
+        return redirect('/groups');
     }
 }

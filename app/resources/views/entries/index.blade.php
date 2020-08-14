@@ -35,13 +35,11 @@
                                         <form action="/entries/{{$entry->id}}" method="post">
                                             @csrf
                                             @method('delete')
-                                            <a href="/entries/{{$entry->id}}/edit">
-                                                <img src="/icons/pencil.svg" />
-                                                Editar
+                                            <a href="/entries/{{$entry->id}}/edit" class="btn btn-sm btn-link" role="button">
+                                                <img src="/icons/pencil.svg" alt="Editar" />
                                             </a>
-                                            <button type="submit" class="btn btn-link">
-                                                <img src="/icons/x-circle.svg" />
-                                                Apagar
+                                            <button type="submit" class="btn btn-sm btn-link" role="link">
+                                                <img src="/icons/x-circle.svg" alt="Apagar" />
                                             </button>
                                         </form>
                                     </td>

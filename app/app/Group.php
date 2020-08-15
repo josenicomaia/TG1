@@ -41,7 +41,7 @@ class Group extends Model {
 
     public function getOrderPath() {
         return ($this->group) ?
-                "{$this->group->getPath()}.{$this->order}"
+                "{$this->group->getOrderPath()}.{$this->order}"
             :
                 $this->order;
     }

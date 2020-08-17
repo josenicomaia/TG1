@@ -5,7 +5,7 @@ use Illuminate\Database\Seeder;
 
 class InitialChartOfAccountsSeeder extends Seeder {
     private $data = [
-        'Recursos Humanos' => [
+        'Obrigações Acessórias' => [
             'Salários',
             'Férias',
             '13º Terceiro',
@@ -19,7 +19,7 @@ class InitialChartOfAccountsSeeder extends Seeder {
             'Exames',
             'Outras despesas de RH',
         ],
-        'OPERACIONAIS' => [
+        'Despesas / Custos Operacionais' => [
             'Energia',
             'Telefone',
             'Combustível',
@@ -30,7 +30,7 @@ class InitialChartOfAccountsSeeder extends Seeder {
             'Sistemas',
             'Outras despesa Operacionais',
         ],
-        'ADMINISTRATIVO' => [
+        'Despesas / Custos Administrativos' => [
             'Aluguel',
             'Condomínio',
             'IPTU',
@@ -41,13 +41,16 @@ class InitialChartOfAccountsSeeder extends Seeder {
             'Cartão de Credito',
             'Outras despesas Administrativas',
         ],
-        'OBRIGAÇÕES FISCAIS' => [
-            'INSS',
-            'IPTU',
-            'IPVA',
-            'Simples Nacional',
+        'Obrigações Fiscais' => [
+            'INSS PATRONAL',
+            'IRPJ',
+            'CSLL',
+            'ISS',
+            'ICMS',
+            'PIS',
+            'COFINS',
         ],
-        'DISTRIBUIDORES' => [
+        'Distribuidores' => [
             'Dist. A',
             'Dist. B',
             'Dist. C',

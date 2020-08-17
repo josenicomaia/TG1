@@ -27,6 +27,6 @@
 @endsection
 @section('body_end')
 <script>
-    document.getElementById('description').focus();
+    document.getElementById('at').value = (new Date()).toJSON().slice(0, 10);
 </script>
 @endsection

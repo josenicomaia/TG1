@@ -17,9 +17,12 @@
                         <table class="table table-hover">
                             <thead>
                             <tr>
-                                <th class="w-25" scope="col">#</th>
-                                <th class="w-auto" scope="col">Description</th>
-                                <th class="w-25 text-center">
+                                <th scope="col">#</th>
+                                <th scope="col">Quando</th>
+                                <th scope="col">Categoria</th>
+                                <th scope="col">Valor</th>
+                                <th scope="col">Descrição</th>
+                                <th class="text-center">
                                     <a href="/entries/create">
                                         <img src="/icons/plus-circle.svg" />
                                     </a>
@@ -30,6 +33,9 @@
                             @foreach($entries as $entry)
                                 <tr>
                                     <th scope="row">{{$entry->id}}</th>
+                                    <td>{{$entry->getFormattedAt()}}</td>
+                                    <td>{{$entry->group->getFullDescription()}}</td>
+                                    <td>{{$entry->getFormattedAmount()}}</td>
                                     <td>{{$entry->description}}</td>
                                     <td class="text-center">
                                         <form action="/entries/{{$entry->id}}" method="post">
@@ -38,7 +44,7 @@
                                             <a href="/entries/{{$entry->id}}/edit" class="btn btn-sm btn-link" role="button">
                                                 <img src="/icons/pencil.svg" alt="Editar" />
                                             </a>
-                                            <button type="submit" class="btn btn-sm btn-link" role="link">
+                                            <button type="submit" class="btn btn-sm btn-link" role="link" onclick="return confirm('Tem certeza que deseja apagar \'{{$entry->id}}\'')">
                                                 <img src="/icons/x-circle.svg" alt="Apagar" />
                                             </button>
                                         </form>

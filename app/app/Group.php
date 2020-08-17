@@ -51,6 +51,10 @@ class Group extends Model {
                 $this->order;
     }
 
+    public function getFullDescription() {
+        return "{$this->getOrderPath()} - {$this->description}";
+    }
+
     public static function getTree() {
         return Group::query()
             ->with(['children'])

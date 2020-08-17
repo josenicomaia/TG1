@@ -3,7 +3,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
             <li class="breadcrumb-item"><a href="/entries">Movimentações Financeiras</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Cadastrar Editar Movimentação Financeira</li>
+            <li class="breadcrumb-item active" aria-current="page">Editar Movimentação Financeira</li>
         </ol>
     @endsection
     @section('content')

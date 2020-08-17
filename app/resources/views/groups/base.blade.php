@@ -4,7 +4,7 @@
         <div class="form-group">
             <label for="id">Categoria Pai</label>
             <input type="hidden" name="group_id" value="{{$group->group_id}}" />
-            <input class="form-control" id="id" value="{{$group->group->getOrderPath()}} - {{$group->group->description}}" disabled />
+            <input class="form-control" id="id" value="{{$group->getFullDescription()}}" disabled />
         </div>
     @endisset
     <div class="form-group">

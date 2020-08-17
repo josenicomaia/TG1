@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Entry;
 use App\Group;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class EntriesController extends Controller {
     public function index() {
@@ -15,7 +16,9 @@ class EntriesController extends Controller {
 
     public function create() {
         return view('entries.create', [
-            'entry' => new Entry(),
+            'entry' => new Entry([
+                'at' => Carbon::now(),
+            ]),
             'groups' => Group::getFlatTree()
         ]);
     }

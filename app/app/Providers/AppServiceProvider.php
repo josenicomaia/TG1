@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use NumberFormatter;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -12,12 +13,19 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
-    {
+    public function register() {
         if ($this->app->isLocal()) {
+            // Laravel Telescope
             $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
             $this->app->register(TelescopeServiceProvider::class);
+
+            // Laravel Debug Bar
+            $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
         }
+
+        $this->app->singleton(NumberFormatter::class, function () {
+            return new NumberFormatter($this->app->getLocale(), NumberFormatter::CURRENCY);
+        });
     }
 
     /**
@@ -25,8 +33,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
+    public function boot() {
         Schema::defaultStringLength(191);
     }
 }

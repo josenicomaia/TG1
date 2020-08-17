@@ -32,6 +32,7 @@ class AddSubGroupSuport extends Migration
     {
         Schema::table('groups', function (Blueprint $table) {
             $table->dropForeign(['group_id']);
+            $table->dropColumn('group_id');
             $table->removeColumn('order');
         });
     }

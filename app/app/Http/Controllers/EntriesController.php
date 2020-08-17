@@ -16,7 +16,7 @@ class EntriesController extends Controller {
     public function create() {
         return view('entries.create', [
             'entry' => new Entry(),
-            'groups' => Group::all()
+            'groups' => Group::getFlatTree()
         ]);
     }
 
@@ -30,7 +30,7 @@ class EntriesController extends Controller {
     public function edit(Entry $entry) {
         return view('entries.edit', [
             'entry' => $entry,
-            'groups' => Group::all()
+            'groups' => Group::getFlatTree()
         ]);
     }
 

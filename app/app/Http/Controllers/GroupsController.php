@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class GroupsController extends Controller {
     public function index() {
         return view('groups.index', [
-            'groups' => Group::firstLevelOrderedByOrder()
+            'groups' => Group::getTree()
         ]);
     }
 
@@ -26,7 +26,7 @@ class GroupsController extends Controller {
     }
 
     public function edit(Group $group) {
-        return view('groups.edit',[
+        return view('groups.edit', [
             'group' => $group
         ]);
     }

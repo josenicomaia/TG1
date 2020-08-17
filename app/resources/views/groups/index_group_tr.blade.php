@@ -1,5 +1,5 @@
 <tr>
-    <th scope="row">{{$parentOrder ?? ''}}{{$group->order}}</th>
+    <th scope="row">{{$group->getOrderPath()}}</th>
     <td>{{$group->description}}</td>
     <td class="text-center">
         <form action="/groups/{{$group->id}}" method="post">
@@ -17,18 +17,8 @@
         </form>
     </td>
 </tr>
-@if (count($group->groups))
-    @foreach($group->groups as $groupChild)
-        @isset($parentOrder)
-            @include('groups.index_group_tr', [
-                  'parentOrder' => "{$parentOrder}{$group->order}.",
-                  'group' => $groupChild
-              ])
-        @else
-            @include('groups.index_group_tr', [
-                'parentOrder' => "{$group->order}.",
-                'group' => $groupChild
-            ])
-        @endisset
-    @endforeach
-@endif
+@foreach($group->children as $groupChild)
+    @include('groups.index_group_tr', [
+        'group' => $groupChild
+    ])
+@endforeach

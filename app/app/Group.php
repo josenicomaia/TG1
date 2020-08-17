@@ -22,6 +22,11 @@ class Group extends Model {
         return $this->belongsTo('App\Group');
     }
 
+    public function children() {
+        return $this->groups()
+            ->with(['children', 'group']);
+    }
+
     public function entries() {
         return $this->hasMany('App\Entry');
     }
@@ -40,21 +45,23 @@ class Group extends Model {
     }
 
     public function getOrderPath() {
-        return ($this->group) ?
+        return $this->group ?
                 "{$this->group->getOrderPath()}.{$this->order}"
             :
                 $this->order;
     }
 
-    public function groupsRecursive() {
-        return $this->groups()
-            ->with('groupsRecursive');
-    }
-
-    public static function firstLevelOrderedByOrder() {
-        return Group::with('groups')
+    public static function getTree() {
+        return Group::query()
+            ->with(['children'])
             ->orderBy('order')
             ->where('group_id', null)
+            ->get();
+    }
+
+    public static function getFlatTree() {
+        return Group::query()
+            ->with(['group'])
             ->get();
     }
 }

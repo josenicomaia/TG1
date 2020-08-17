@@ -2,7 +2,6 @@
 
 use App\Group;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class InitialChartOfAccountsSeeder extends Seeder {
     private $data = [

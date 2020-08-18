@@ -2,17 +2,19 @@
 
 namespace App\Exports;
 
-use App\Group;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithStrictNullComparison;
 use Maatwebsite\Excel\Concerns\WithStyles;
+use Maatwebsite\Excel\Events\BeforeSheet;
+use PhpOffice\PhpSpreadsheet\Style\Border;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class CheckBalanceSheetExport implements FromView, ShouldAutoSize, WithStrictNullComparison, WithStyles {
+class CheckBalanceSheetExport implements FromView, ShouldAutoSize, WithStrictNullComparison, WithStyles, WithEvents {
     use Exportable;
 
     private $months = [
@@ -30,71 +32,85 @@ class CheckBalanceSheetExport implements FromView, ShouldAutoSize, WithStrictNul
         'DEZ',
     ];
 
+    private $year;
+    private $groups;
+    private $summedEntryWithKeys;
+
+    public function __construct($year, $groups, $summedEntryWithKeys) {
+        $this->year = $year;
+        $this->groups = $groups;
+        $this->summedEntryWithKeys = $summedEntryWithKeys;
+    }
+
     public function view(): View {
-        $groups = Group::getFlatTree();
-
-        $summedEntries = DB::table('entries')
-            ->select(
-                DB::raw('year(at) year, month(at) month, entries.group_id group_id, groups.group_id parent_id, sum(amount) total')
-            )
-            ->join('groups', 'groups.id', '=', 'entries.group_id')
-            ->whereRaw('year(at) = ?', [2019])
-            ->groupBy([
-                'year',
-                'month',
-                'group_id',
-                'parent_id'
-            ])
-            ->get();
-
-        $summedEntryWithKeys = [];
-
-        foreach ($summedEntries as $summedEntry) {
-            if ($summedEntry->parent_id) {
-                if (@$summedEntryWithKeys[$summedEntry->year][$summedEntry->month][$summedEntry->parent_id]) {
-                    $summedEntryWithKeys[$summedEntry->year][$summedEntry->month][$summedEntry->parent_id] += $summedEntry->total;
-                } else {
-                    $summedEntryWithKeys[$summedEntry->year][$summedEntry->month][$summedEntry->parent_id] = $summedEntry->total;
-                }
-            }
-
-            $summedEntryWithKeys[$summedEntry->year][$summedEntry->month][$summedEntry->group_id] = $summedEntry->total;
-        }
-
         return view('exports.checkBalanceSheet', [
-            'year' => 2019,
+            'year' => $this->year,
             'months' => $this->months,
-            'groups' => $groups,
-            'summedEntryWithKeys' => $summedEntryWithKeys,
+            'groups' => $this->groups,
+            'summedEntryWithKeys' => $this->summedEntryWithKeys,
         ]);
     }
 
     public function styles(Worksheet $sheet) {
+        $sheet->getStyle('A1')
+            ->getAlignment()
+            ->setHorizontal('center')
+            ->setVertical('center');
+
+        $sheet->getStyle('A1')
+            ->getFont()
+            ->setBold(true);
+
+        $sheet->getStyle('C1')
+            ->getAlignment()
+            ->setHorizontal('center')
+            ->setVertical('center');
+    }
+
+    public function registerEvents(): array {
         return [
-            'A1' => [
-                'alignment' => [
-                    'horizontal' => 'center',
-                    'vertical' => 'center',
-                ]
-            ],
-            'C1' => [
-                'alignment' => [
-                    'horizontal' => 'center',
-                    'vertical' => 'center',
-                ]
-            ],
-            '1' => [
-                'font' => ['bold' => true]
-            ],
-            '2' => [
-                'font' => ['bold' => true]
-            ],
-            'A' => [
-                'font' => ['bold' => true]
-            ],
-            'B' => [
-                'font' => ['bold' => true]
-            ]
+            BeforeSheet::class => function (BeforeSheet $event) {
+                /* @var Worksheet $sheet */
+                $sheet = $event->getDelegate();
+
+                $sheet->getStyle('A1:N' . (count($this->groups) + 2))
+                    ->getFill()
+                    ->setFillType(Fill::FILL_SOLID)
+                    ->getStartColor()
+                    ->setARGB('FFB4C6E7');
+
+                $sheet->getStyle('C3:N' . (count($this->groups) + 2))
+                    ->getNumberFormat()
+                    ->setFormatCode('"R$ "#,##0.00_-');
+
+                $positions = [];
+
+                foreach ($this->groups as $k => $group) {
+                    if (!$group->group) {
+                        $positions[] = $k + 3;
+                    }
+                }
+
+                foreach ($positions as $position) {
+                    $sheet->getStyle("A{$position}:N{$position}")
+                        ->getFill()
+                        ->setFillType(Fill::FILL_SOLID)
+                        ->getStartColor()
+                        ->setARGB('FF44546A');
+
+                    $sheet->getStyle("A{$position}:N{$position}")
+                        ->getFont()
+                        ->getColor()
+                        ->setARGB('FFFFFFFF');
+                }
+
+                $sheet->getStyle('A1:N' . (count($this->groups) + 2))
+                    ->getBorders()
+                    ->getAllBorders()
+                    ->setBorderStyle(Border::BORDER_THICK)
+                    ->getColor()
+                    ->setARGB('FFFFFFFF');
+            }
         ];
     }
 }

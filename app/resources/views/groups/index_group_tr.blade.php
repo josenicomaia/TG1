@@ -5,9 +5,11 @@
         <form action="/groups/{{$group->id}}" method="post">
             @csrf
             @method('delete')
+            @if(!$group->group_id)
             <a href="/groups/create?group_id={{$group->id}}" class="btn btn-sm btn-link" role="button">
                 <img src="/icons/plus-circle.svg" alt="Adicionar Subcategoria" />
             </a>
+            @endif
             <a href="/groups/{{$group->id}}/edit" class="btn btn-sm btn-link" role="button">
                 <img src="/icons/pencil.svg" alt="Editar" />
             </a>

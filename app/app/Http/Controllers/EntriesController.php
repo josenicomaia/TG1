@@ -9,8 +9,12 @@ use Illuminate\Support\Carbon;
 
 class EntriesController extends Controller {
     public function index() {
+        $entries = Entry::with('group')
+                ->orderBy('at', 'desc')
+                ->get();
+
         return view('entries.index', [
-            'entries' => Entry::with('group')->get()
+            'entries' => $entries
         ]);
     }
 

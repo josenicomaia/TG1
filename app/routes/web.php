@@ -24,4 +24,4 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'index');
 Route::resource('groups', 'GroupsController');
 Route::resource('entries', 'EntriesController');
-
+Route::get('reports/check-balance-sheet', 'ReportsController@checkBalanceSheet');

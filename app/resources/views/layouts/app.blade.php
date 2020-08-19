@@ -45,6 +45,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/reports/check-balance-sheet">Balancete de Verificação</a>
+                                <a class="dropdown-item" href="/reports/amount-per-group">Custos por Categoria</a>
                             </div>
                         </li>
                     </ul>

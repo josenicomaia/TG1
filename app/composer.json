@@ -11,6 +11,7 @@
         "php": "^7.4",
         "ext-intl": "*",
         "barryvdh/laravel-debugbar": "^3.4",
+        "consoletvs/charts": "^7.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",

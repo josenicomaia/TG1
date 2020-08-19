@@ -25,3 +25,4 @@ Route::view('/', 'index');
 Route::resource('groups', 'GroupsController');
 Route::resource('entries', 'EntriesController');
 Route::get('reports/check-balance-sheet', 'ReportsController@checkBalanceSheet');
+Route::get('reports/amount-per-group', 'ReportsController@amountPerGroup');

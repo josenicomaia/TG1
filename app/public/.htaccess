@@ -1,6 +1,3 @@
-AddHandler php73-script .php
-suPHP_ConfigPath /home/dashboard-sabha/php/7.1/cgi/
-
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes

@@ -3,10 +3,10 @@
 namespace App\Providers;
 
 use App\Charts\GroupChart;
+use ConsoleTVs\Charts\Registrar as Charts;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use NumberFormatter;
-use ConsoleTVs\Charts\Registrar as Charts;
 
 class AppServiceProvider extends ServiceProvider
 {

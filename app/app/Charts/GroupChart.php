@@ -32,8 +32,8 @@ class GroupChart extends BaseChart {
             ->dataset('', array_map(function ($item) {
                 return $item->total;
             }, DB::select('
-                select sum(e.amount) total
-                from entries e
+                select a.total
+                from aggregations a
                 left join (
                     select 1 month union all
                     select 2 union all
@@ -47,10 +47,10 @@ class GroupChart extends BaseChart {
                     select 10 union all
                     select 11 union all
                     select 12
-                ) m on m.month = month(e.at)
-                where year(e.at) = ?
-                and e.group_id = ?
-                group by month(e.at)
+                ) m on m.month = month(a.at)
+                where year(a.at) = ?
+                and a.group_id = ?
+                order by a.at asc
             ', [
                 intval($request->get('year')),
                 intval($request->get('group_id'))

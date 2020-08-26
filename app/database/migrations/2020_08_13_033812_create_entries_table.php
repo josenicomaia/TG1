@@ -14,7 +14,7 @@ class CreateEntriesTable extends Migration {
             $table->foreignId('group_id')
                 ->constrained();
 
-            $table->float('amount');
+            $table->double('amount');
             $table->date('at');
 
             $table->string('description')

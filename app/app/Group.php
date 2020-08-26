@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Repositories\GroupRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -13,6 +14,13 @@ class Group extends Model {
         'order',
         'description',
     ];
+
+    private GroupRepository $groupRepository;
+
+    public function __construct(array $attributes = []) {
+        parent::__construct($attributes);
+        $this->groupRepository = resolve(GroupRepository::class);
+    }
 
     public function groups() {
         return $this->hasMany('App\Group');
@@ -40,8 +48,7 @@ class Group extends Model {
     }
 
     public function getLastOrder() {
-        return Group::where('group_id', $this->group_id)
-            ->max('order') ?? 0;
+        return $this->groupRepository->getLastOrder($this->group_id);
     }
 
     public function getOrderPath() {
@@ -53,19 +60,5 @@ class Group extends Model {
 
     public function getFullDescription() {
         return "{$this->getOrderPath()} - {$this->description}";
-    }
-
-    public static function getTree() {
-        return Group::query()
-            ->with(['children'])
-            ->orderBy('order')
-            ->where('group_id', null)
-            ->get();
-    }
-
-    public static function getFlatTree() {
-        return Group::query()
-            ->with(['group'])
-            ->get();
     }
 }

@@ -4,14 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Entry;
 use App\Group;
+use App\Repositories\EntryRepository;
+use App\Repositories\GroupRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
 class EntriesController extends Controller {
-    public function index() {
-        $entries = Entry::with('group')
-                ->orderBy('at', 'desc')
-                ->get();
+    private EntryRepository $entryRepository;
+    private GroupRepository $groupRepository;
+
+    public function __construct(EntryRepository $entryRepository, GroupRepository $groupRepository) {
+        $this->entryRepository = $entryRepository;
+        $this->groupRepository = $groupRepository;
+    }
+
+    public function index(Request $request) {
+        if ($request->has('group_id')) {
+            $entries = $this->entryRepository->listWithGroupByGroupId($request->get('group_id'));
+        } else {
+            $entries = $this->entryRepository->listWithGroup();
+        }
 
         return view('entries.index', [
             'entries' => $entries
@@ -23,7 +35,7 @@ class EntriesController extends Controller {
             'entry' => new Entry([
                 'at' => Carbon::now(),
             ]),
-            'groups' => Group::getFlatTree()
+            'groups' => $this->groupRepository->getFlatTree()
         ]);
     }
 
@@ -37,7 +49,7 @@ class EntriesController extends Controller {
     public function edit(Entry $entry) {
         return view('entries.edit', [
             'entry' => $entry,
-            'groups' => Group::getFlatTree()
+            'groups' => $this->groupRepository->getFlatTree()
         ]);
     }
 

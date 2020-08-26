@@ -2,6 +2,9 @@
 
 namespace App;
 
+use App\Events\EntryCreated;
+use App\Events\EntryDeleted;
+use App\Events\EntryUpdated;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use NumberFormatter;
@@ -20,6 +23,12 @@ class Entry extends Model {
 
     protected $dates = [
         'at',
+    ];
+
+    protected $dispatchesEvents = [
+        'created' => EntryCreated::class,
+        'updated' => EntryUpdated::class,
+        'deleted' => EntryDeleted::class,
     ];
 
     public function __construct(array $attributes = []) {

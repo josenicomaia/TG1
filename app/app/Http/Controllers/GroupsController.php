@@ -3,12 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Group;
+use App\Repositories\GroupRepository;
 use Illuminate\Http\Request;
 
 class GroupsController extends Controller {
+    private GroupRepository $groupRepository;
+
+    public function __construct(GroupRepository $groupRepository) {
+        $this->groupRepository = $groupRepository;
+    }
+
     public function index() {
         return view('groups.index', [
-            'groups' => Group::getTree()
+            'groups' => $this->groupRepository->getTree()
         ]);
     }
 

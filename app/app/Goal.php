@@ -9,6 +9,8 @@ use NumberFormatter;
 class Goal extends Model {
     use SoftDeletes;
 
+    private NumberFormatter $formatter;
+
     protected $fillable = [
         'group_id',
         'at',
@@ -29,10 +31,14 @@ class Goal extends Model {
     }
 
     public function getFormattedAmount() {
-        return $this->formatter->formatCurrency($this->amount, 'BRL');
+        return $this->formatter->formatCurrency($this->limit, 'BRL');
     }
 
     public function getFormattedAt() {
         return $this->at->format('d/m/Y');
+    }
+
+    public function setLimitAttribute($limit) {
+        $this->attributes['limit'] = number_format(str_replace(",",".",str_replace(".","", $limit)), 2, '.', '');
     }
 }

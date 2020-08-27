@@ -2,7 +2,7 @@
 @section('content')
     <div class="form-group">
         <label for="at">Quando <span class="required">*</span></label>
-        <input type="month" class="form-control" id="at" name="at" value="{{$goal->at->format('Y-m-d')}}" />
+        <input type="date" class="form-control" id="at" name="at" value="{{$goal->at->format('Y-m-d')}}" />
     </div>
     <div class="form-group">
         <label for="group_id">Categoria <span class="required">*</span></label>
@@ -16,8 +16,8 @@
         </select>
     </div>
     <div class="form-group">
-        <label for="amount">Valor <span class="required">*</span></label>
-        <input class="form-control" id="amount" name="amount" value="{{$goal->amount ?? ''}}" />
+        <label for="limit">Valor <span class="required">*</span></label>
+        <input class="form-control" id="limit" name="limit" value="{{$goal->limit ?? ''}}" />
     </div>
 @endsection
 

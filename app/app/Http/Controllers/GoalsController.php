@@ -20,7 +20,9 @@ class GoalsController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $goals = Goal::all();
+        $goals = Goal::with('group')
+            ->orderBy('at', 'desc')
+            ->get();
 
         return view('goals.index', [
             'goals' => $goals
@@ -33,7 +35,7 @@ class GoalsController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        return view('entries.create', [
+        return view('goals.create', [
             'goal' => new Goal([
                 'at' => Carbon::now()->firstOfMonth(),
             ]),
@@ -90,6 +92,6 @@ class GoalsController extends Controller {
     public function destroy(Goal $goal) {
         $goal->delete();
 
-        return redirect('/entries');
+        return redirect('/goals');
     }
 }

@@ -47,4 +47,8 @@ class Entry extends Model {
     public function getFormattedAt() {
         return $this->at->format('d/m/Y');
     }
+
+    public function setAmountAttribute($amount) {
+        $this->attributes['amount'] = number_format(str_replace(",",".",str_replace(".","", $amount)), 2, '.', '');
+    }
 }

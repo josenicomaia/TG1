@@ -3,14 +3,14 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
         <li class="breadcrumb-item">Relatórios</li>
-        <li class="breadcrumb-item active" aria-current="page">Custos por Categoria</li>
+        <li class="breadcrumb-item active" aria-current="page">Balancete de Verificação</li>
     </ol>
 @endsection
 @section('content')
     <div class="container">
         <div class="card">
             <div class="card-header">
-                Relatório de Custos por Categoria
+                Relatório de Balancete de Verificação
             </div>
             <div class="card-body">
                 <form method="get">

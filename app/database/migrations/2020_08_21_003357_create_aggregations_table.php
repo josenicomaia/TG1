@@ -16,8 +16,9 @@ class CreateAggregationsTable extends Migration {
 
             $table->integer('items');
             $table->double('total');
-
             $table->timestamps();
+
+            $table->index(['at']);
         });
     }
 

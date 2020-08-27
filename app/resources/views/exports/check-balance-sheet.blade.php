@@ -16,7 +16,7 @@
                 <td>{{$group->getOrderPath()}}</td>
                 <td>{{$group->description}}</td>
                 @foreach($months as $key => $month)
-                    <td>{{$summedEntryWithKeys[$year][$key + 1][$group->id] ?? 0}}</td>
+                    <td>{{$summedEntryWithKeys[$group->id][$key + 1] ?? 0}}</td>
                 @endforeach
             </tr>
         @endforeach

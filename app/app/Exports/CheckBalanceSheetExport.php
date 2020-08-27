@@ -43,7 +43,7 @@ class CheckBalanceSheetExport implements FromView, ShouldAutoSize, WithStrictNul
     }
 
     public function view(): View {
-        return view('exports.checkBalanceSheet', [
+        return view('exports.check-balance-sheet', [
             'year' => $this->year,
             'months' => $this->months,
             'groups' => $this->groups,

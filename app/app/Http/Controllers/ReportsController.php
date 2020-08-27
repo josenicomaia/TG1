@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Exports\CheckBalanceSheetExport;
-use App\Group;
 use App\Repositories\GroupRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,36 +17,28 @@ class ReportsController extends Controller {
         $this->groupRepository = $groupRepository;
     }
 
-    public function postCheckBalanceSheet() {
-        $year = 2019;
+    public function checkBalanceSheet(Request $request) {
+        if (!$request->has('year')) {
+            return view('reports.check_balance_sheet');
+        }
+
+        $year = $request->get('year');
         $groups = $this->groupRepository->getFlatTree();
 
-        $summedEntries = DB::table('entries')
-            ->select(
-                DB::raw('year(at) year, month(at) month, entries.group_id group_id, groups.group_id parent_id, sum(amount) total')
-            )
-            ->join('groups', 'groups.id', '=', 'entries.group_id')
-            ->whereRaw('year(at) = ?', [2019])
-            ->groupBy([
-                'year',
-                'month',
-                'group_id',
-                'parent_id'
-            ])
-            ->get();
+        $summedEntries = DB::select('
+            select a.group_id,
+                   month(a.at) month,
+                   a.total
+            from aggregations a
+            where year(a.at) = ?
+        ', [
+            intval($request->get('year'))
+        ]);
 
         $summedEntryWithKeys = [];
 
         foreach ($summedEntries as $summedEntry) {
-            if ($summedEntry->parent_id) {
-                if (@$summedEntryWithKeys[$summedEntry->year][$summedEntry->month][$summedEntry->parent_id]) {
-                    $summedEntryWithKeys[$summedEntry->year][$summedEntry->month][$summedEntry->parent_id] += $summedEntry->total;
-                } else {
-                    $summedEntryWithKeys[$summedEntry->year][$summedEntry->month][$summedEntry->parent_id] = $summedEntry->total;
-                }
-            }
-
-            $summedEntryWithKeys[$summedEntry->year][$summedEntry->month][$summedEntry->group_id] = $summedEntry->total;
+            $summedEntryWithKeys[$summedEntry->group_id][$summedEntry->month] = $summedEntry->total;
         }
 
         return $this->excel->download(
@@ -56,7 +47,7 @@ class ReportsController extends Controller {
                 Excel::XLSX);
     }
 
-    public function getAmountPerGroup(Request $request) {
+    public function amountPerGroup(Request $request) {
         if (!$request->has('year')) {
             return view('reports.get_amount_per_group');
         }

@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('', 'HomeController');
 Route::resource('groups', 'GroupsController');
+Route::resource('goals', 'GoalsController');
 Route::resource('entries', 'EntriesController');
 Route::get('reports/check-balance-sheet', 'ReportsController@checkBalanceSheet');
 Route::get('reports/amount-per-group', 'ReportsController@amountPerGroup');

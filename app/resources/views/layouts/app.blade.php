@@ -37,6 +37,9 @@
                             <a class="nav-link" href="/entries">Movimentações Financeiras</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="/goals">Metas</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="/groups">Categorias</a>
                         </li>
                         <li class="nav-item dropdown">

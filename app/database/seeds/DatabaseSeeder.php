@@ -9,5 +9,8 @@ class DatabaseSeeder extends Seeder {
 
         $this->call(InitialCheckBalanceSheetSeeder::class);
         $this->command->info('Entries table seeded.');
+
+        $this->call(InitialGoalSeeder::class);
+        $this->command->info('Goals table seeded.');
     }
 }

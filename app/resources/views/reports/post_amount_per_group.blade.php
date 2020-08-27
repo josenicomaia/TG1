@@ -74,7 +74,7 @@
                         .beginAtZero()
                         .borderColors()
                         .title('{{$childGroup->getFullDescription()}}')
-                        .datasets(['bar']),
+                        .datasets([{type: 'line', fill: false}, 'bar']),
                 });
             @endforeach
         };

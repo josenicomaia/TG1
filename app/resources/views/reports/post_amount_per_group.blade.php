@@ -20,10 +20,12 @@
                         @foreach($groups as $position => $childGroup)
                             <td align="center">
                                 <div style="height: 300px; width: 300px;" id="chart_{{$childGroup->id}}"></div>
-                                <a href="?year={{$year}}&group_id={{$childGroup->id}}" class="btn btn-sm btn-link" role="button">
-                                    <img src="/icons/funnel.svg" alt="Detalhar Categoria" />
-                                    <span>Detalhar</span>
-                                </a>
+                                @if(count($childGroup->children))
+                                    <a href="?year={{$year}}&group_id={{$childGroup->id}}" class="btn btn-sm btn-link" role="button">
+                                        <img src="/icons/funnel.svg" alt="Detalhar Categoria" />
+                                        <span>Detalhar</span>
+                                    </a>
+                                @endif
                                 <a href="/entries/?group_id={{$childGroup->id}}" class="btn btn-sm btn-link" role="button">
                                     <img src="/icons/journal-text.svg" alt="Visualizar Dados" />
                                     <span>Dados</span>

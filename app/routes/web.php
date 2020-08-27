@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
-Route::view('/', 'index');
+Route::resource('', 'HomeController');
 Route::resource('groups', 'GroupsController');
 Route::resource('entries', 'EntriesController');
 Route::get('reports/check-balance-sheet', 'ReportsController@checkBalanceSheet');

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,17 +14,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-
-//Auth::routes();
+Auth::routes([
+    'register' => false
+]);
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('', 'HomeController');
-Route::resource('groups', 'GroupsController');
-Route::resource('goals', 'GoalsController');
-Route::resource('entries', 'EntriesController');
-Route::get('reports/check-balance-sheet', 'ReportsController@checkBalanceSheet');
-Route::get('reports/amount-per-group', 'ReportsController@amountPerGroup');
+Route::middleware('auth')->group(function () {
+    // = RESOURCE =
+    // GET          /             HomeController@index
+    // GET          /create       HomeController@create
+    // POST         /             HomeController@store
+    // GET          /{id}         HomeController@show (não utilizado)
+    // GET          /{id}/edit    HomeController@edit
+    // PUT/PATCH    /{id}         HomeController@update
+    // DELETE       /{id}         HomeController@destroy
+    Route::resource('', 'HomeController');
+    Route::resource('groups', 'GroupsController');
+    Route::resource('goals', 'GoalsController');
+    Route::resource('entries', 'EntriesController');
+    Route::get('reports/check-balance-sheet', 'ReportsController@checkBalanceSheet');
+    Route::get('reports/amount-per-group', 'ReportsController@amountPerGroup');
+
+    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+    Route::post('register', 'Auth\RegisterController@register');
+});

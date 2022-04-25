@@ -11,7 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+    .sass('resources/sass/app.scss', 'public/css')
+    .sass('resources/sass/login.scss', 'public/css');
 
 mix.js('resources/js/chart.js', 'public/js')
     .sass('resources/sass/chart.scss', 'public/css');
@@ -19,6 +20,6 @@ mix.js('resources/js/chart.js', 'public/js')
 mix.copyDirectory('node_modules/bootstrap-icons/icons', 'public/icons');
 
 mix.browserSync({
-    open: false,
+    open: true,
     proxy: 'localhost:8000'
 });
